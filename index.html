@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/T1BdN05c/63-sin-t-tulo-20250212175847.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEROES CLANS</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+</style>
+
+    
+    <!-- OUUUYEAAAA :D vamo' a darle stylesss -->
+    
+    <style>
+    :root {
+    --primary-bg: #0a0a2a;
+    --secondary-bg: #14143c;
+    --text-color: #ffffff;
+    --accent-color: #5D5CDE;
+    --clan-vega: #3B82F6;  /* Azul */
+    --clan-arturo: #F59E0B; /* Amarillo */
+    --clan-sirius: #10B981; /* Verde */
+    --clan-antares: #EF4444; /* Rojo */
+    --glow-strength: 1.2;
+}
+
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--primary-bg);
+        color: var(--text-color);
+        overflow-x: hidden;
+    }
+
+    .pixel-font {
+        font-family: 'Press Start 2P', cursive;
+    }
+
+    /* Fondos y estrelas */
+    .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background: 
+            radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+            radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+            radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+        background-size: 550px 550px, 350px 350px, 250px 250px;
+        animation: stars 120s linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes stars {
+        0% { background-position: 0 0, 0 0, 0 0; }
+        100% { background-position: 550px 550px, 350px 350px, 250px 250px; }
+    }
+
+    /* Hero section */
+    .hero {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        filter: brightness(0.3);
+    }
+
+    /* Navegación */
+    .nav-link {
+        position: relative;
+        transition: all 0.3s;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: var(--accent-color);
+        transition: width 0.3s ease;
+        box-shadow: 0 0 8px var(--accent-color);
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .nav-link:hover {
+        transform: translateY(-2px);
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Animaciones */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
+        /* Estilos para títulos y textos */
+    .title-epic {
+        font-size: clamp(2rem, 8vw, 4.5rem);
+        letter-spacing: 2px;
+        text-shadow: 0 0 15px rgba(93, 92, 222, calc(var(--glow-strength) * 0.8)),
+                     0 0 30px rgba(93, 92, 222, calc(var(--glow-strength) * 0.4));
+        background: linear-gradient(to right, #ffffff, #c3c3ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: pulse 3s infinite ease-in-out;
+    }
+
+    .title-section {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        position: relative;
+        display: inline-block;
+        margin-bottom: 2rem;
+    }
+
+    .title-section::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(to right, 
+            rgba(93, 92, 222, 0.8), 
+            rgba(93, 92, 222, 0.2)
+        );
+        border-radius: 3px;
+    }
+
+    /* Botones */
+    .epic-button {
+        position: relative;
+        padding: 0.75rem 1.5rem;
+        background: rgba(93, 92, 222, 0.2);
+        color: white;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        border: 2px solid rgba(93, 92, 222, 0.4);
+        border-radius: 4px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        z-index: 1;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+    }
+
+    .epic-button::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(45deg, 
+            rgba(93, 92, 222, 0.8), 
+            rgba(120, 119, 255, 0.8), 
+            rgba(93, 92, 222, 0.8)
+        );
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(8px);
+        animation: button-glow 10s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    @keyframes button-glow {
+        0% { background-position: 0 0; }
+        50% { background-position: 400% 0; }
+        100% { background-position: 0 0; }
+    }
+
+    .epic-button:hover {
+        transform: translateY(-3px);
+        background: rgba(93, 92, 222, 0.4);
+        border-color: rgba(93, 92, 222, 0.6);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    .epic-button:hover::before {
+        opacity: 1;
+    }
+
+    .epic-button:active {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+        /* Estilos de sección Clasificatoria */
+    .leaderboard-card {
+        background: rgba(20, 20, 60, 0.4);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .leaderboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .leaderboard-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0) 70%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+    }
+
+    .leaderboard-card:hover::before {
+        opacity: 1;
+    }
+
+    .clan-vega { color: var(--clan-vega); }
+    .clan-arturo { color: var(--clan-arturo); }
+    .clan-sirius { color: var(--clan-sirius); }
+    .clan-antares { color: var(--clan-antares); }
+
+    .bg-clan-vega { background-color: rgba(59, 130, 246, 0.3); }
+    .bg-clan-arturo { background-color: rgba(245, 158, 11, 0.3); }
+    .bg-clan-sirius { background-color: rgba(16, 185, 129, 0.3); }
+    .bg-clan-antares { background-color: rgba(239, 68, 68, 0.3); }
+
+    .border-clan-vega { border-color: rgba(59, 130, 246, 0.5); }
+    .border-clan-arturo { border-color: rgba(245, 158, 11, 0.5); }
+    .border-clan-sirius { border-color: rgba(16, 185, 129, 0.5); }
+    .border-clan-antares { border-color: rgba(239, 68, 68, 0.5); }
+
+    /* Estilos de líderes */
+    .leader-card {
+        background: rgba(20, 20, 60, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .leader-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .leader-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.8), rgba(255,255,255,0));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .leader-card:hover::after {
+        opacity: 1;
+    }
+
+    .leader-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+        filter: grayscale(20%);
+    }
+
+    .leader-card:hover .leader-avatar {
+        transform: scale(1.05);
+        filter: grayscale(0%);
+        border-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    }
+    
+        /* Secciones informativas */
+    .info-section {
+        position: relative;
+        overflow: hidden;
+        padding: 5rem 0;
+    }
+
+    .info-panel {
+        background: rgba(20, 20, 60, 0.4);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        height: 100%;
+        position: relative;
+    }
+
+    .info-panel:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Efecto de línea brillante que recorre el borde del panel al hacer hover */
+    .info-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+        transition: width 0.6s ease;
+    }
+
+    .info-panel:hover::before {
+        width: 100%;
+    }
+
+    /* Scroll animations */
+    .fade-in-section {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+        will-change: opacity, transform;
+    }
+
+    .fade-in-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .fade-in-left {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .fade-in-right {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .fade-in-left.is-visible,
+    .fade-in-right.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Barra de progreso */
+    .progress-bar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+    }
+
+    .progress-bar {
+        width: 100%;
+        background: var(--accent-color);
+        height: 0%;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px var(--accent-color);
+    }
+
+    /* Coins display */
+    .coins-display {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 1rem;
+        color: #FFD700;
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        line-height: 1;
+    }
+
+    .coin-icon {
+        width: 15px;
+        height: 15px;
+        object-fit: contain;
+        animation: coinGlow 5s infinite;
+        filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+    }
+
+    @keyframes coinGlow {
+        0% {
+            filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.5));
+        }
+        50% {
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+        100% {
+            filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.5));
+        }
+    }
+    
+        /* Contador */
+    .counter-box {
+        position: relative;
+        background: rgba(20, 20, 40, 0.4);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .counter-title {
+        font-size: 0.9rem;
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .counter-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0.5rem 0;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        font-family: 'Press Start 2P', cursive;
+    }
+
+    .battle-card {
+        position: relative;
+        background: rgba(20, 20, 40, 0.6);
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .battle-card:hover {
+        transform: translateX(5px);
+        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(30, 30, 60, 0.6);
+    }
+
+    .battle-result {
+        font-weight: 600;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+
+    .battle-win {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+    }
+
+    .battle-defeat {
+        background: rgba(239, 68, 68, 0.2);
+        color: #f87171;
+    }
+
+    /* Floating elements */
+    .float-element {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* Clan showcase */
+    .clan-showcase {
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .clan-showcase-img {
+        transition: all 0.3s ease;
+        will-change: transform;
+    }
+
+    .clan-showcase:hover .clan-showcase-img {
+        transform: translateY(-10px) scale(1.05);
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+    }
+    
+        /* Cabeceras de section con estilo */
+    .section-header {
+        position: relative;
+        margin-bottom: 4rem;
+        text-align: center;
+    }
+
+    .section-header::after {
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(to right, 
+            rgba(93, 92, 222, 0), 
+            rgba(93, 92, 222, 0.8), 
+            rgba(93, 92, 222, 0)
+        );
+        border-radius: 3px;
+    }
+
+    /* Navegación sticky con blur */
+    .sticky-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1rem 0;
+        background: rgba(10, 10, 42, 0.5);
+        backdrop-filter: blur(8px);
+        transform: translateY(-100%);
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sticky-nav.visible {
+        transform: translateY(0);
+    }
+
+    /* Logo flotante */
+    .logo-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* Hero title con aura */
+    .hero-title {
+        position: relative;
+        text-shadow: 0 0 20px rgba(93, 92, 222, 0.8);
+    }
+
+    .hero-title::before {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        color: rgba(93, 92, 222, 0.3);
+        filter: blur(15px);
+    }
+
+    /* Indicador de scroll */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: scrollBounce 2s infinite ease-in-out;
+        opacity: 0.7;
+    }
+
+    @keyframes scrollBounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0) translateX(-50%);
+        }
+        40% {
+            transform: translateY(-20px) translateX(-50%);
+        }
+        60% {
+            transform: translateY(-10px) translateX(-50%);
+        }
+    }
+
+    /* Sombras para clanes en leaderboard */
+    .shadow-vega {
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+    }
+    .shadow-arturo {
+        box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+    }
+    .shadow-sirius {
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+    .shadow-antares {
+        box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    }
+
+    /* Glowing Icon */
+    .glow-icon {
+        filter: drop-shadow(0 0 5px var(--accent-color));
+        transition: all 0.3s ease;
+    }
+
+    .glow-icon:hover {
+        filter: drop-shadow(0 0 10px var(--accent-color));
+        transform: scale(1.1);
+    }
+
+    /* Burbujas flotantes de fondo */
+    .bg-bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0)
+        );
+        animation: float 10s infinite ease-in-out;
+        z-index: -1;
+        backdrop-filter: blur(1px);
+    }
+
+    .bg-bubble-1 {
+        width: 300px;
+        height: 300px;
+        left: -150px;
+        top: 20%;
+        animation-delay: 0s;
+    }
+
+    .bg-bubble-2 {
+        width: 200px;
+        height: 200px;
+        right: -100px;
+        top: 40%;
+        animation-delay: 2s;
+    }
+
+    .bg-bubble-3 {
+        width: 250px;
+        height: 250px;
+        left: 30%;
+        bottom: -125px;
+        animation-delay: 4s;
+    }
+
+    /* Mejoras para responsividad */
+    @media (max-width: 768px) {
+        .title-epic {
+            font-size: clamp(1.5rem, 8vw, 3.5rem);
+        }
+
+        .leader-card {
+            margin-bottom: 2rem;
+        }
+
+        .counter-box {
+            margin-bottom: 1rem;
+        }
+
+        .counter-value {
+            font-size: 2rem;
+        }
+
+        .bg-bubble {
+            opacity: 0.5;
+        }
+    }
+
+    /* Animación para el logo principal */
+    .main-logo {
+        animation: pulse 5s infinite ease-in-out;
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+        transition: all 0.5s ease;
+    }
+
+    .main-logo:hover {
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
+        transform: scale(1.05);
+    }
+    
+    <!-- ESTILOS PARA EL FONT INTER -->
+    /* Estilos para subtítulos con Inter semibold */
+.hero p, .section-subtitle, .info-section p, .fade-in-section p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+}
+
+.hero p em, .section-subtitle em, .info-section p em, .fade-in-section p em {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+</style>
+</head>
+
+<body>
+    <!-- Progress bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Background stars -->
+    <div class="stars"></div>
+
+    <!-- Navigation -->
+    <nav class="sticky-nav" id="sticky-nav">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-xl font-bold pixel-font text-glow">HEROES CLANS</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#clasificatoria" class="nav-link">Clasificatoria</a>
+                    <a href="#lideres" class="nav-link">Líderes</a>
+                    <a href="#clans-store" class="nav-link">Clans Store</a>
+                    <a href="#runas" class="nav-link">Runas</a>
+                    <a href="#boosts" class="nav-link">Boosts</a>
+                    <a href="#challenges" class="nav-link">Challenges</a>
+                </div>
+                <!-- Mobile menu button -->
+                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden pt-4 pb-2 space-y-3" id="mobile-menu">
+                <a href="#clasificatoria" class="block py-2 nav-link">Clasificatoria</a>
+                <a href="#lideres" class="block py-2 nav-link">Líderes</a>
+                <a href="#clans-store" class="block py-2 nav-link">Clans Store</a>
+                <a href="#runas" class="block py-2 nav-link">Runas</a>
+                <a href="#boosts" class="block py-2 nav-link">Boosts</a>
+                <a href="#challenges" class="block py-2 nav-link">Challenges</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero flex items-center justify-center text-center relative">
+        <video class="video-bg" autoplay muted loop playsinline>
+            <source src="hero.mp4" type="video/mp4">
+        </video>
+
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="container px-4 py-16">
+                <div class="flex flex-col items-center justify-center space-y-8">
+                    <img src="https://i.postimg.cc/vZ8Kzt66/Photo-Room-20250211-172348.png" alt="Heroes Clans Logo" class="w-32 h-32 md:w-40 md:h-40 main-logo">
+                    <h1 class="title-epic hero-title pixel-font" data-text="HEROES CLANS">HEROES CLANS</h1>
+                    <p class="text-lg md:text-xxl max-w-2xl mx-auto mt-4 text-gray-300 font-semibold">
+    <em> ÚNETE A LA BATALLA DE CLANES Y COMPITE POR LA GLORIA Y EL HONOR</em>
+</p>
+
+                    <div class="flex flex-wrap justify-center gap-4 mt-8">
+                        <a href="#clasificatoria" class="epic-button">VER CLASIFICACIÓN</a>
+                        <a href="#clans-store" class="epic-button">CLANS STORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Floating bubbles for background -->
+    <div class="bg-bubble bg-bubble-1"></div>
+    <div class="bg-bubble bg-bubble-2"></div>
+    <div class="bg-bubble bg-bubble-3"></div>
+    
+        <!-- Clasificatoria Section -->
+    <section id="clasificatoria" class="py-24 relative fade-in-section">
+        <div class="container mx-auto px-4">
+            <div class="section-header">
+                <h2 class="title-section pixel-font text-center">CLASIFICATORIA</h2>
+            </div>
+
+            <!-- Overview cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Clan Vega -->
+                <div class="leaderboard-card bg-clan-vega border-clan-vega shadow-vega fade-in-left">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <img src="https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png" alt="Vega" class="w-12 h-12">
+                        <h3 class="text-xl font-bold clan-vega">VEGA</h3>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm opacity-70">Victorias</p>
+                            <p class="text-3xl font-bold pixel-font clan-vega">5</p>
+                        </div>
+                        <div>
+                            <p class="text-sm opacity-70">Puntos Totales</p>
+                            <p class="text-3xl font-bold pixel-font clan-vega">55</p>
+                        </div>
+                        <div>
+                            <p class="text-sm opacity-70">Posición</p>
+                            <p class="text-3xl font-bold pixel-font clan-vega">1°</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clan Arturo -->
+                <div class="leaderboard-card bg-clan-arturo border-clan-arturo shadow-arturo fade-in-left">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <img src="https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png" alt="Arturo" class="w-12 h-12">
+                        <h3 class="text-xl font-bold clan-arturo">ARTURO</h3>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm opacity-70">Victorias</p>
+                            <p class="text-3xl font-bold pixel-font clan-arturo">3</p>
+                        </div>
+                        <div>
+                            <p class="text-sm opacity-70">Puntos Totales</p>
+                            <p class="text-3xl font-bold pixel-font clan-arturo">48</p>
+                        </div>
+                        <div>
+                            <p class="text-sm opacity-70">Posición</p>
+                            <p class="text-3xl font-bold pixel-font clan-arturo">2°</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clan Sirius -->
+                <div class="leaderboard-card bg-clan-sirius border-clan-sirius shadow-sirius fade-in-right">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <img src="https://i.postimg.cc/3wBzqCNn/Photo-Room-20250209-163858.png" alt="Sirius" class="w-12 h-12">
+                        <h3 class="text-xl font-bold clan-sirius">SIRIUS</h3>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm opacity-70">Victorias</p>
+                            <p class="text-3xl font-bold pixel-font clan-sirius">2</p>
+                        </div>
+                        <div>
+                            <p class="text-sm opacity-70">Puntos Totales</p>
+                            <p class="text-3xl font-bold pixel-font clan-sirius">37</p>
+                        </div>
+                        <div>
+                            <p class="text-sm opacity-70">Posición</p>
+                            <p class="text-3xl font-bold pixel-font clan-sirius">3°</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clan Antares -->
+                <div class="leaderboard-card bg-clan-antares border-clan-antares shadow-antares fade-in-right">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <img src="https://i.postimg.cc/q7xdTHbc/Photo-Room-20250209-163507.png" alt="Antares" class="w-12 h-12">
+                        <h3 class="text-xl font-bold clan-antares">ANTARES</h3>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm opacity-70">Victorias</p>
+                            <p class="text-3xl font-bold pixel-font clan-antares">1</p>
+                        </div>
+                        <div>
+                            <p class="text-sm opacity-70">Puntos Totales</p>
+                            <p class="text-3xl font-bold pixel-font clan-antares">22</p>
+                        </div>
+                        <div>
+                            <p class="text-sm opacity-70">Posición</p>
+                            <p class="text-3xl font-bold pixel-font clan-antares">4°</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Battle history and counters -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Battle history -->
+                <div class="lg:col-span-2 fade-in-left">
+                    <div class="bg-opacity-10 bg-white backdrop-blur-sm rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-4 pixel-font">Historial de Batallas</h3>
+                        
+                        <!-- Battle card 1 -->
+                        <div class="battle-card">
+                            <div>
+                                <p class="font-semibold">Batalla #12 - Meditación</p>
+                                <p class="text-sm text-gray-400">15 Feb 2025</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-right">
+                                    <p class="font-semibold clan-vega">VEGA</p>
+                                    <p class="text-sm battle-result battle-win">GANADOR</p>
+                                </div>
+                                <img src="https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png" alt="Vega" class="w-10 h-10">
+                            </div>
+                        </div>
+                        
+                        <!-- Battle card 2 -->
+                        <div class="battle-card">
+                            <div>
+                                <p class="font-semibold">Batalla #11 - Lecturas</p>
+                                <p class="text-sm text-gray-400">8 Feb 2025</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-right">
+                                    <p class="font-semibold clan-arturo">ARTURO</p>
+                                    <p class="text-sm battle-result battle-win">GANADOR</p>
+                                </div>
+                                <img src="https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png" alt="Arturo" class="w-10 h-10">
+                            </div>
+                        </div>
+                        
+                        <!-- Battle card 3 -->
+                        <div class="battle-card">
+                            <div>
+                                <p class="font-semibold">Batalla #10 - Pasos</p>
+                                <p class="text-sm text-gray-400">1 Feb 2025</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-right">
+                                    <p class="font-semibold clan-vega">VEGA</p>
+                                    <p class="text-sm battle-result battle-win">GANADOR</p>
+                                </div>
+                                <img src="https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png" alt="Vega" class="w-10 h-10">
+                            </div>
+                        </div>
+                        
+                        <!-- Battle card 4 -->
+                        <div class="battle-card">
+                            <div>
+                                <p class="font-semibold">Batalla #9 - Deepwork</p>
+                                <p class="text-sm text-gray-400">25 Ene 2025</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-right">
+                                    <p class="font-semibold clan-sirius">SIRIUS</p>
+                                    <p class="text-sm battle-result battle-win">GANADOR</p>
+                                </div>
+                                <img src="https://i.postimg.cc/3wBzqCNn/Photo-Room-20250209-163858.png" alt="Sirius" class="w-10 h-10">
+                            </div>
+                        </div>
+                        
+                        <!-- Battle card 5 -->
+                        <div class="battle-card">
+                            <div>
+                                <p class="font-semibold">Batalla #8 - Meditación</p>
+                                <p class="text-sm text-gray-400">18 Ene 2025</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-right">
+                                    <p class="font-semibold clan-arturo">ARTURO</p>
+                                    <p class="text-sm battle-result battle-win">GANADOR</p>
+                                </div>
+                                <img src="https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png" alt="Arturo" class="w-10 h-10">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Counter column -->
+                <div class="fade-in-right">
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Total battles counter -->
+                        <div class="counter-box">
+                            <div class="text-center">
+                                <p class="counter-title">Batallas Totales</p>
+                                <p class="counter-value">2</p>
+                                <p class="text-sm text-gray-400">Temporada V</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Season progress counter -->
+                        <div class="counter-box">
+                            <div class="text-center">
+                                <p class="counter-title">Progreso Temporada</p>
+                                <p class="counter-value">40%</p>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5 mt-2">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 40%"></div>
+                                </div>
+                                <p class="text-sm text-gray-400 mt-2">2 de 5 batallas</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Next battle counter -->
+                        <div class="counter-box">
+                            <div class="text-center">
+                                <p class="counter-title">Próxima Batalla</p>
+                                <p class="counter-value">5d</p>
+                                <p class="text-sm text-gray-400">30 Feb - Lectura</p>
+                            </div>
+                        </div>
+                        
+                       
+                                
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+        <!-- Líderes Section -->
+    <section id="lideres" class="py-24 relative fade-in-section">
+        <div class="container mx-auto px-4">
+            <div class="section-header">
+                <h2 class="title-section pixel-font text-center">LÍDERES DE CLANES</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Líder Vega -->
+                <div class="fade-in-section">
+                    <div class="leader-card bg-clan-vega bg-opacity-20 border-clan-vega border">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="mb-4">
+                                <img 
+                                    src="https://i.imgur.com/placeholder.jpg" 
+                                    alt="Líder Vega" 
+                                    class="leader-avatar"
+                                    onerror="this.src='https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png'"
+                                >
+                            </div>
+                            <h3 class="text-xl font-bold clan-vega mb-2">LÍDER VEGA</h3>
+                            <p class="text-sm text-gray-300 mb-4">"La disciplina vence al talento natural cuando el talento natural no tiene disciplina."</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Líder Arturo -->
+                <div class="fade-in-section">
+                    <div class="leader-card bg-clan-arturo bg-opacity-20 border-clan-arturo border">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="mb-4">
+                                <img 
+                                    src="https://i.imgur.com/placeholder.jpg" 
+                                    alt="Líder Arturo" 
+                                    class="leader-avatar"
+                                    onerror="this.src='https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png'"
+                                >
+                            </div>
+                            <h3 class="text-xl font-bold clan-arturo mb-2">LÍDER ARTURO</h3>
+                            <p class="text-sm text-gray-300 mb-4">"No se trata de tener tiempo, se trata de hacer tiempo para lo que importa."</p>
+                            
+                         
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Líder Sirius -->
+                <div class="fade-in-section">
+                    <div class="leader-card bg-clan-sirius bg-opacity-20 border-clan-sirius border">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="mb-4">
+                                <img 
+                                    src="https://i.imgur.com/placeholder.jpg" 
+                                    alt="Líder Sirius" 
+                                    class="leader-avatar"
+                                    onerror="this.src='https://i.postimg.cc/3wBzqCNn/Photo-Room-20250209-163858.png'"
+                                >
+                            </div>
+                            <h3 class="text-xl font-bold clan-sirius mb-2">LÍDER SIRIUS</h3>
+                            <p class="text-sm text-gray-300 mb-4">"El que persevera, alcanza; el que estudia, aprende; el que medita, evoluciona."</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Líder Antares -->
+                <div class="fade-in-section">
+                    <div class="leader-card bg-clan-antares bg-opacity-20 border-clan-antares border">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="mb-4">
+                                <img 
+                                    src="https://i.imgur.com/placeholder.jpg" 
+                                    alt="Líder Antares" 
+                                    class="leader-avatar"
+                                    onerror="this.src='https://i.postimg.cc/q7xdTHbc/Photo-Room-20250209-163507.png'"
+                                >
+                            </div>
+                            <h3 class="text-xl font-bold clan-antares mb-2">LÍDER ANTARES</h3>
+                            <p class="text-sm text-gray-300 mb-4">"hola soy joc y me hago muchas pajas jajaj uuuuu."</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+        <!-- Clans Store Section -->
+    <section id="clans-store" class="py-24 relative fade-in-section info-section">
+        <div class="container mx-auto px-4">
+            <div class="section-header">
+                <h2 class="title-section pixel-font text-center">CLANS STORE</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="fade-in-left">
+                    <div class="info-panel p-8">
+                        <h3 class="text-xl font-bold mb-4 pixel-font">¿QUÉ ES LA CLANS STORE?</h3>
+                        <p class="mb-6 leading-relaxed">
+                            La <span class="font-bold">Clans Store</span> es el lugar donde los clanes pueden invertir sus <span class="font-bold text-yellow-400">Heroes Coins</span> para adquirir ítems estratégicos que les den ventaja en las batallas.
+                        </p>
+                        <p class="mb-6 leading-relaxed">
+                            Cada clan obtiene monedas al ganar batallas o mediante runas especiales, y puede usarlas para comprar <span class="font-bold">Runas</span> y <span class="font-bold">Boosts</span> que potencien sus estrategias.
+                        </p>
+                        <p class="mb-8 leading-relaxed">
+                            Las compras realizadas en la tienda pueden cambiar completamente el resultado de una temporada, ¡así que elige sabiamente!
+                        </p>
+                        <div class="flex justify-center">
+                            <a href="https://poe.com/embed?canvas=clans-store-app" target="_blank" class="epic-button">VISITAR CLANS STORE</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="clan-showcase fade-in-right">
+                    <img src="https://i.postimg.cc/T1BdN05c/63-sin-t-tulo-20250212175847.png" alt="Clan Store Preview" class="clan-showcase-img w-full max-w-md mx-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Runas Section -->
+    <section id="runas" class="py-24 relative fade-in-section info-section">
+        <div class="container mx-auto px-4">
+            <div class="section-header">
+                <h2 class="title-section pixel-font text-center">RUNAS</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="clan-showcase order-2 lg:order-1 fade-in-left">
+                    <img src="https://i.postimg.cc/QtrBGmSP/Photo-Room-20250210-075807.png" alt="Runa Preview" class="clan-showcase-img w-full max-w-md mx-auto float-element">
+                </div>
+                
+                <div class="order-1 lg:order-2 fade-in-right">
+                    <div class="info-panel p-8">
+                        <h3 class="text-xl font-bold mb-4 pixel-font">¿QUÉ SON LAS RUNAS?</h3>
+                        <p class="mb-6 leading-relaxed">
+                            Las <span class="font-bold">Runas</span> son habilidades fijas que otorgan ventajas estratégicas a los clanes durante las batallas.
+                        </p>
+                        <p class="mb-6 leading-relaxed">
+                            Existen tres tipos de runas:
+                        </p>
+                        <ul class="mb-6 space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-blue-400 mr-2">■</span>
+                                <span><span class="font-bold text-blue-400">Runas Azules:</span> Otorgan puntos fijos en batallas.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-400 mr-2">■</span>
+                                <span><span class="font-bold text-red-400">Runas Rojas:</span> Proporcionan multiplicadores de puntos.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-yellow-400 mr-2">■</span>
+                                <span><span class="font-bold text-yellow-400">Runas Amarillas:</span> Generan Heroes Coins adicionales.</span>
+                            </li>
+                        </ul>
+                        <p class="mb-8 leading-relaxed">
+                            Cada clan puede equipar hasta 5 runas simultáneamente. La combinación correcta puede marcar la diferencia entre la victoria y la derrota.
+                        </p>
+                        <div class="flex justify-center">
+                            <a href="https://poe.com/embed?canvas=clans-store-app#catalog" target="_blank" class="epic-button">VER CATÁLOGO DE RUNAS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+        <!-- Boosts Section -->
+    <section id="boosts" class="py-24 relative fade-in-section info-section">
+        <div class="container mx-auto px-4">
+            <div class="section-header">
+                <h2 class="title-section pixel-font text-center">BOOSTS</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="fade-in-left">
+                    <div class="info-panel p-8">
+                        <h3 class="text-xl font-bold mb-4 pixel-font">¿QUÉ SON LOS BOOSTS?</h3>
+                        <p class="mb-6 leading-relaxed">
+                            Los <span class="font-bold">Boosts</span> son ítems especiales de un solo uso que proporcionan efectos poderosos e inmediatos durante las batallas.
+                        </p>
+                        <p class="mb-6 leading-relaxed">
+                            A diferencia de las runas, los boosts se almacenan en el inventario del clan hasta que decidan utilizarlos en el momento más estratégico.
+                        </p>
+                        <p class="mb-8 leading-relaxed">
+                            Desde protección contra derrotas hasta la posibilidad de elegir la temática de la próxima batalla, los boosts pueden cambiar drásticamente el curso de una temporada.
+                        </p>
+                        <div class="flex justify-center">
+                            <a href="https://poe.com/embed?canvas=clans-store-app#boosts" target="_blank" class="epic-button">VER CATÁLOGO DE BOOSTS</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="clan-showcase fade-in-right">
+                    <img src="https://i.postimg.cc/k538Bw8s/Photo-Room-20250212-205529.png" alt="Boost Preview" class="clan-showcase-img w-full max-w-md mx-auto float-element">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges Section -->
+    <section id="challenges" class="py-24 relative fade-in-section info-section">
+        <div class="container mx-auto px-4">
+            <div class="section-header">
+                <h2 class="title-section pixel-font text-center">CHALLENGES</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="clan-showcase order-2 lg:order-1 fade-in-left">
+                    <img src="https://i.postimg.cc/vZ8Kzt66/Photo-Room-20250211-172348.png" alt="Challenge Preview" class="clan-showcase-img w-full max-w-md mx-auto float-element">
+                </div>
+                
+                <div class="order-1 lg:order-2 fade-in-right">
+                    <div class="info-panel p-8">
+                        <h3 class="text-xl font-bold mb-4 pixel-font">¿QUÉ SON LOS CHALLENGES?</h3>
+                        <p class="mb-6 leading-relaxed">
+                            Los <span class="font-bold">Challenges</span> son retos individuales que permiten a los miembros de los clanes ganar recompensas personales mientras contribuyen con puntos adicionales para su clan.
+                        </p>
+                        <p class="mb-6 leading-relaxed">
+                            Completar challenges no solo ayuda al clan en las clasificaciones, sino que también otorga <span class="font-bold text-yellow-400">Heroes Coins</span> y reconocimiento personal dentro de la comunidad.
+                        </p>
+                        <p class="mb-8 leading-relaxed">
+                            Los challenges semanales y mensuales ofrecen objetivos variados relacionados con hábitos saludables y productivos como lectura, meditación, ejercicio y trabajo profundo.
+                        </p>
+                        <div class="flex justify-center">
+                            <a href="#" class="epic-button">VER CHALLENGES</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-opacity-30 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold pixel-font mb-2">HEROES CLANS</h3>
+                    <p class="text-sm text-gray-400">Construyendo mejores hábitos juntos</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#clasificatoria" class="nav-link text-sm">Clasificatoria</a>
+                    <a href="#lideres" class="nav-link text-sm">Líderes</a>
+                    <a href="#clans-store" class="nav-link text-sm">Clans Store</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-xs text-gray-500">© 2025 Heroes Clans. Todos los derechos reservados.</p>
+                <div class="mt-4 md:mt-0">
+                    <p class="text-xs text-gray-500">Diseñado con ♥️ para héroes reales</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Progress bar
+            const progressBar = document.querySelector('.progress-bar');
+            
+            window.addEventListener('scroll', () => {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                const scrolled = window.scrollY;
+                const progress = (scrolled / documentHeight) * 100;
+                
+                progressBar.style.height = `${progress}%`;
+            });
+            
+            // Sticky navigation
+            const stickyNav = document.getElementById('sticky-nav');
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Show/hide sticky nav based on scroll direction and position
+                if (scrollTop > 200) {
+                    if (scrollTop > lastScrollTop) {
+                        // Scrolling down
+                        stickyNav.classList.remove('visible');
+                    } else {
+                        // Scrolling up
+                        stickyNav.classList.add('visible');
+                    }
+                } else {
+                    stickyNav.classList.remove('visible');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            // Intersection Observer for fade animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            };
+            
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            
+            // Select all elements with fade-in classes
+            const fadeElements = document.querySelectorAll(
+                '.fade-in-section, .fade-in-left, .fade-in-right'
+            );
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                        
+                        // Scroll to target
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Offset for sticky header
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Parallax effect for hero section
+            const videoBg = document.querySelector('.video-bg');
+            
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                if (videoBg) {
+                    requestAnimationFrame(function() {
+                        videoBg.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
+                    });
+                }
+            });
+            
+            // Initialize with a scroll event to set initial states
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>
