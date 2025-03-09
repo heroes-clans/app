@@ -20,9 +20,9 @@
     <!-- OUUUYEAAAA :D vamo' a darle stylesss -->
     
     <style>
-    :root {
-    --primary-bg: #0a0a2a;
-    --secondary-bg: #14143c;
+:root {
+    --primary-bg: #050518;  /* Fondo principal más oscuro */
+    --secondary-bg: #0a0a28; /* Fondo secundario más oscuro */
     --text-color: #ffffff;
     --accent-color: #5D5CDE;
     --clan-vega: #3B82F6;  /* Azul */
@@ -285,22 +285,20 @@
     
         /* Estilos de sección Clasificatoria */
     .leaderboard-card {
-        background: rgba(20, 20, 60, 0.4);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 2rem;
-        transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-        position: relative;
-    }
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 1.25rem;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
 
-    .leaderboard-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
-        border-color: rgba(255, 255, 255, 0.3);
-    }
+   .leaderboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
 
     .leaderboard-card::before {
         content: '';
@@ -319,6 +317,12 @@
         transform: rotate(0deg);
         pointer-events: none;
     }
+
+
+
+
+
+
 
     .leaderboard-card:hover::before {
         opacity: 1;
@@ -783,7 +787,7 @@
     }
 
     /* Navegación sticky con blur */
-     .sticky-nav {
+    .sticky-nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -797,8 +801,8 @@
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
 }
+
 
 
     .sticky-nav.visible {
@@ -969,32 +973,29 @@
     }
     
     /* Mobile menu animations */
-    .mobile-menu-button {
-        position: relative;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        background: rgba(93, 92, 222, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+    /* Reemplaza todo el CSS del menú móvil con este código */
+.mobile-menu-button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: rgba(93, 92, 222, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-    .mobile-menu-button:hover {
-        background: rgba(93, 92, 222, 0.2);
-        transform: scale(1.05);
-        box-shadow: 0 0 15px rgba(93, 92, 222, 0.3);
-    }
+.mobile-menu-button:hover {
+    background: rgba(93, 92, 222, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(93, 92, 222, 0.3);
+}
 
-       /* Actualiza estos estilos para el menú móvil */
-/* Actualiza estos estilos para el menú móvil */
-/* Actualiza estos estilos para el menú móvil */
-/* Actualiza estos estilos para el menú móvil */
 .mobile-menu {
-    position: fixed;
-    top: 60px;
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     width: 100%;
@@ -1006,11 +1007,12 @@
     transition: all 0.3s ease-in-out;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     overflow: hidden;
-    z-index: 1000;
     max-height: 0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
+    pointer-events: none;
+    z-index: 1000;
 }
 
 .mobile-menu.active {
@@ -1020,9 +1022,8 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     transform: translateY(0);
+    pointer-events: auto;
 }
-
-
 
 .mobile-menu .nav-link {
     opacity: 0;
@@ -1042,39 +1043,10 @@
 .mobile-menu.active .nav-link:nth-child(5) { transition-delay: 0.25s; }
 .mobile-menu.active .nav-link:nth-child(6) { transition-delay: 0.3s; }
 
+/* Corregir la navegación sticky */
 
-.mobile-menu.hidden {
-    opacity: 0;
-    transform: scaleY(0);
-    pointer-events: none; /* Evita clics en el menú cuando está oculto */
-}
-
-.mobile-menu:not(.hidden) {
-    opacity: 1;
-    transform: scaleY(1);
-    pointer-events: auto; /* Permite clics cuando está visible */
-}
-
-
-
-    .mobile-menu .nav-link {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-
-    .mobile-menu:not(.hidden) .nav-link {
-        opacity: 1;
-        transform: translateX(0);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .mobile-menu:not(.hidden) .nav-link:nth-child(1) { transition-delay: 0.05s; }
-    .mobile-menu:not(.hidden) .nav-link:nth-child(2) { transition-delay: 0.1s; }
-    .mobile-menu:not(.hidden) .nav-link:nth-child(3) { transition-delay: 0.15s; }
-    .mobile-menu:not(.hidden) .nav-link:nth-child(4) { transition-delay: 0.2s; }
-    .mobile-menu:not(.hidden) .nav-link:nth-child(5) { transition-delay: 0.25s; }
-    .mobile-menu:not(.hidden) .nav-link:nth-child(6) { transition-delay: 0.3s; }
-
+      
+      
     /* Progress bar with animations */
     .progress-bar-indicator {
         position: absolute;
@@ -1116,7 +1088,7 @@
     }
 
     .animate-float {
-        animation: float 5s infinite ease-in-out;
+        animation: float 3s infinite ease-in-out;
     }
 
     .animate-pulse {
@@ -1296,6 +1268,1064 @@ section {
 }
 
 
+/* Hacer tarjetas de información más grandes en PC */
+@media (min-width: 1024px) {
+    .info-panel {
+        padding: 3rem;
+        font-size: 1.05rem;
+    }
+    
+    .info-panel h3 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .info-panel p {
+        font-size: 1.15rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .info-panel .epic-button {
+        padding: 0.9rem 1.8rem;
+        font-size: 1rem;
+    }
+}
+
+/* Mejoras adicionales para tarjetas de clasificatoria */
+.leaderboard-card {
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.leaderboard-card:hover {
+    transform: translateY(-10px);
+}
+
+.leaderboard-card .stat-label {
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    letter-spacing: 1.2px;
+}
+
+.leaderboard-card:hover .stat-label {
+    letter-spacing: 1.5px;
+}
+
+.leaderboard-card .stat-value {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.leaderboard-card:hover .stat-value {
+    transform: scale(1.1);
+    text-shadow: 0 0 15px currentColor;
+}
+
+.leaderboard-card .fa-trophy {
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 0 2px currentColor);
+}
+
+.leaderboard-card:hover .fa-trophy {
+    transform: rotate(10deg);
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+
+
+/* Estilos actualizados para el trofeo de Estelar Clan */
+.leaderboard-card .fa-trophy {
+    font-size: 1.5rem; /* Trofeo más grande */
+    margin-right: 0.5rem;
+    position: relative;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 0 3px currentColor);
+    transform-origin: center;
+}
+
+/* Gradiente animado en hover */
+.leaderboard-card .trophy-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.leaderboard-card .trophy-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent, 
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: rotate-gradient 4s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes rotate-gradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.leaderboard-card .trophy-container:hover::before {
+    opacity: 1;
+}
+
+.leaderboard-card .trophy-container:hover .fa-trophy {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* Efecto brillante para el trofeo */
+.leaderboard-card .fa-trophy::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 30%;
+    height: 30%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 30%;
+    filter: blur(1px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.leaderboard-card .trophy-container:hover .fa-trophy::after {
+    opacity: 1;
+    animation: trophy-shine 2s infinite ease-in-out;
+}
+
+@keyframes trophy-shine {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+
+/* Estilos de responsividad mejorados para leaderboard cards */
+.leaderboard-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.25rem;
+}
+
+
+
+
+/* Media queries para diferentes tamaños de pantalla */
+@media (min-width: 1024px) {
+    .leaderboard-card {
+        padding: 1.5rem;
+    }
+    
+    .leaderboard-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .leaderboard-card .pixel-font {
+        font-size: 0.9rem;
+    }
+    
+    .leaderboard-card .text-4xl {
+        font-size: 2.0rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .leaderboard-card .w-10 {
+        width: 2.25rem;
+    }
+    
+    .leaderboard-card .h-10 {
+        height: 2.25rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .leaderboard-card {
+        padding: 1rem;
+    }
+    
+    .leaderboard-card h3 {
+        font-size: 1.25rem;
+        margin-right: 0.5rem;
+    }
+    
+    .leaderboard-card .w-10 {
+        width: 1.75rem;
+    }
+    
+    .leaderboard-card .h-10 {
+        height: 1.75rem;
+    }
+    
+    .leaderboard-card .text-4xl {
+        font-size: 2rem;
+    }
+    
+    .leaderboard-card .text-lg {
+        font-size: 0.875rem;
+    }
+}
+
+
+          <!-- CONTENEDORES DE IMÁGENES DE SECCIONES INFORMATIVAS-->
+          
+          /* Contenedores ultra premium para imágenes */
+.cosmic-showcase-container {
+    position: relative;
+    background: rgba(10, 10, 40, 0.6);
+    border-radius: 18px;
+    padding: 3.5rem 3rem 3rem;
+    margin: 2rem auto;
+    max-width: 90%;
+    overflow: hidden;
+    isolation: isolate;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(93, 92, 222, 0.2) inset;
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Efecto de resplandor del borde */
+.cosmic-showcase-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    padding: 2px;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(93, 92, 222, 0.3),
+        rgba(255, 255, 255, 0.5),
+        rgba(93, 92, 222, 0.3),
+        transparent
+    );
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.2;
+    transition: opacity 0.6s ease, filter 0.6s ease;
+    filter: blur(0.5px);
+}
+
+/* Efecto de resplandor interno */
+.cosmic-showcase-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(93, 92, 222, 0.15),
+        transparent 70%
+    );
+    z-index: -1;
+    opacity: 0.4;
+    transition: opacity 0.8s ease, transform 1s ease;
+}
+
+/* Panel de estilo digital (estilo tron) */
+.cosmic-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.1;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.cosmic-grid::before, .cosmic-grid::after {
+    content: '';
+    position: absolute;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transition: transform 0.8s ease;
+}
+
+/* Elementos decorativos (puntos brillantes) */
+.cosmic-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.cosmic-dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 8px 2px rgba(93, 92, 222, 0.6);
+    opacity: 0.2;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.cosmic-dot:nth-child(1) { top: 15%; left: 10%; }
+.cosmic-dot:nth-child(2) { top: 25%; right: 15%; }
+.cosmic-dot:nth-child(3) { bottom: 20%; left: 20%; }
+.cosmic-dot:nth-child(4) { bottom: 30%; right: 25%; }
+.cosmic-dot:nth-child(5) { top: 40%; left: 50%; }
+.cosmic-dot:nth-child(6) { bottom: 15%; right: 10%; }
+.cosmic-dot:nth-child(7) { top: 60%; left: 25%; }
+.cosmic-dot:nth-child(8) { bottom: 40%; right: 45%; }
+
+/* Líneas decorativas */
+.cosmic-lines {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.15;
+    overflow: hidden;
+    transition: opacity 0.8s ease;
+}
+
+.cosmic-line {
+    position: absolute;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    height: 1px;
+    width: 100%;
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 1.5s ease;
+}
+
+.cosmic-line:nth-child(1) { top: 20%; transform-origin: left center; }
+.cosmic-line:nth-child(2) { top: 40%; transform-origin: right center; }
+.cosmic-line:nth-child(3) { top: 60%; transform-origin: left center; }
+.cosmic-line:nth-child(4) { top: 80%; transform-origin: right center; }
+
+/* Título decorativo con efecto cyber/neon */
+.cosmic-title {
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 
+        0 0 5px rgba(93, 92, 222, 0.8),
+        0 0 10px rgba(93, 92, 222, 0.5);
+    opacity: 0.8;
+    transform: translateY(0px);
+    transition: all 0.5s ease;
+    z-index: 5;
+    letter-spacing: 1px;
+}
+
+/* Insignia decorativa */
+.cosmic-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(93, 92, 222, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    opacity: 0.7;
+    transition: all 0.5s ease;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(93, 92, 222, 0.5);
+}
+
+.cosmic-badge i {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Marcas de esquina */
+.cosmic-corners {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.cosmic-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.3);
+    border-width: 0;
+    opacity: 0.6;
+    transition: all 0.5s ease;
+}
+
+.cosmic-corner.top-left {
+    top: 10px;
+    left: 10px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+}
+
+.cosmic-corner.top-right {
+    top: 10px;
+    right: 10px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+}
+
+.cosmic-corner.bottom-left {
+    bottom: 10px;
+    left: 10px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
+
+.cosmic-corner.bottom-right {
+    bottom: 10px;
+    right: 10px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+}
+
+/* Contenedor para la imagen con efecto de profundidad */
+.cosmic-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+/* Estilos para la imagen */
+.cosmic-image {
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: center center;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    will-change: transform, filter;
+    transform: translateZ(0);
+}
+
+/* Efecto de brillo/resplandor de la imagen */
+.cosmic-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 255, 255, 0.4),
+        transparent 70%
+    );
+    opacity: 0;
+    z-index: 2;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+/* Estilos hover */
+.cosmic-showcase-container:hover {
+    transform: translateY(-15px) rotateX(5deg);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(93, 92, 222, 0.4) inset;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cosmic-showcase-container:hover::before {
+    opacity: 1;
+    filter: blur(0px);
+    animation: borderFlow 4s linear infinite;
+}
+
+.cosmic-showcase-container:hover::after {
+    opacity: 0.8;
+    transform: scale(1.1);
+    animation: pulseGlow 4s ease infinite;
+}
+
+.cosmic-showcase-container:hover .cosmic-grid {
+    opacity: 0.2;
+    transform: translateZ(-50px);
+}
+
+.cosmic-showcase-container:hover .cosmic-grid::before {
+    transform: rotate(5deg) scale(1.2);
+}
+
+.cosmic-showcase-container:hover .cosmic-grid::after {
+    transform: rotate(-5deg) scale(1.2);
+}
+
+.cosmic-showcase-container:hover .cosmic-image-wrapper {
+    transform: translateZ(20px);
+}
+
+.cosmic-showcase-container:hover .cosmic-image {
+    transform: translateY(-10px) scale(1.08);
+    filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.5)) brightness(1.1);
+}
+
+.cosmic-showcase-container:hover .cosmic-shine {
+    opacity: 0.8;
+    animation: shineMove 3s ease-in-out infinite alternate;
+}
+
+.cosmic-showcase-container:hover .cosmic-dot {
+    opacity: 1;
+    animation: twinkleBright 4s infinite ease-in-out alternate;
+}
+
+.cosmic-showcase-container:hover .cosmic-dot:nth-child(1) { animation-delay: 0s; }
+.cosmic-showcase-container:hover .cosmic-dot:nth-child(2) { animation-delay: 0.5s; }
+.cosmic-showcase-container:hover .cosmic-dot:nth-child(3) { animation-delay: 1s; }
+.cosmic-showcase-container:hover .cosmic-dot:nth-child(4) { animation-delay: 1.5s; }
+.cosmic-showcase-container:hover .cosmic-dot:nth-child(5) { animation-delay: 2s; }
+.cosmic-showcase-container:hover .cosmic-dot:nth-child(6) { animation-delay: 2.5s; }
+.cosmic-showcase-container:hover .cosmic-dot:nth-child(7) { animation-delay: 3s; }
+.cosmic-showcase-container:hover .cosmic-dot:nth-child(8) { animation-delay: 3.5s; }
+
+.cosmic-showcase-container:hover .cosmic-title {
+    transform: translateY(-2px) translateZ(30px);
+    opacity: 1;
+    text-shadow: 
+        0 0 8px rgba(93, 92, 222, 1),
+        0 0 15px rgba(93, 92, 222, 0.8);
+}
+
+.cosmic-showcase-container:hover .cosmic-badge {
+    transform: scale(1.2) translateZ(25px);
+    opacity: 1;
+    box-shadow: 
+        0 0 15px rgba(93, 92, 222, 0.8),
+        0 0 30px rgba(93, 92, 222, 0.4);
+}
+
+.cosmic-showcase-container:hover .cosmic-lines {
+    opacity: 0.4;
+}
+
+.cosmic-showcase-container:hover .cosmic-line:nth-child(1) {
+    transform: scaleX(1);
+    transition-delay: 0.1s;
+}
+.cosmic-showcase-container:hover .cosmic-line:nth-child(2) {
+    transform: scaleX(1);
+    transition-delay: 0.2s;
+}
+.cosmic-showcase-container:hover .cosmic-line:nth-child(3) {
+    transform: scaleX(1);
+    transition-delay: 0.3s;
+}
+.cosmic-showcase-container:hover .cosmic-line:nth-child(4) {
+    transform: scaleX(1);
+    transition-delay: 0.4s;
+}
+
+.cosmic-showcase-container:hover .cosmic-corner {
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 10px rgba(93, 92, 222, 0.5);
+}
+
+/* Animaciones */
+@keyframes borderFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
+@keyframes twinkleBright {
+    0%, 100% { opacity: 0.4; transform: scale(1); filter: blur(0px); }
+    50% { opacity: 1; transform: scale(2); filter: blur(1px); }
+}
+
+@keyframes shineMove {
+    0% { opacity: 0.5; transform: translateX(-30%) translateY(-30%) scale(1.5); }
+    100% { opacity: 0.8; transform: translateX(30%) translateY(30%) scale(2); }
+}
+
+/* Variaciones por tipo de contenedor */
+.cosmic-showcase-container.store {
+    background: linear-gradient(135deg, rgba(20, 20, 60, 0.6), rgba(93, 92, 222, 0.2));
+}
+.cosmic-showcase-container.store::before {
+    background: linear-gradient(120deg, transparent, rgba(128, 90, 213, 0.4), rgba(255, 255, 255, 0.5), rgba(128, 90, 213, 0.4), transparent);
+}
+.cosmic-showcase-container.store .cosmic-badge {
+    background: rgba(128, 90, 213, 0.3);
+}
+
+.cosmic-showcase-container.runas {
+    background: linear-gradient(135deg, rgba(20, 20, 60, 0.6), rgba(59, 130, 246, 0.2));
+}
+.cosmic-showcase-container.runas::before {
+    background: linear-gradient(120deg, transparent, rgba(59, 130, 246, 0.4), rgba(255, 255, 255, 0.5), rgba(59, 130, 246, 0.4), transparent);
+}
+.cosmic-showcase-container.runas .cosmic-badge {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+.cosmic-showcase-container.boosts {
+    background: linear-gradient(135deg, rgba(20, 20, 60, 0.6), rgba(245, 158, 11, 0.2));
+}
+.cosmic-showcase-container.boosts::before {
+    background: linear-gradient(120deg, transparent, rgba(245, 158, 11, 0.4), rgba(255, 255, 255, 0.5), rgba(245, 158, 11, 0.4), transparent);
+}
+.cosmic-showcase-container.boosts .cosmic-badge {
+    background: rgba(245, 158, 11, 0.3);
+}
+
+.cosmic-showcase-container.challenges {
+    background: linear-gradient(135deg, rgba(20, 20, 60, 0.6), rgba(16, 185, 129, 0.2));
+}
+.cosmic-showcase-container.challenges::before {
+    background: linear-gradient(120deg, transparent, rgba(16, 185, 129, 0.4), rgba(255, 255, 255, 0.5), rgba(16, 185, 129, 0.4), transparent);
+}
+.cosmic-showcase-container.challenges .cosmic-badge {
+    background: rgba(16, 185, 129, 0.3);
+}
+
+/* Mejoras responsivas */
+@media (max-width: 1200px) {
+    .cosmic-showcase-container {
+        padding: 3rem 2.5rem 2.5rem;
+    }
+    
+    .cosmic-image {
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 992px) {
+    .cosmic-showcase-container {
+        max-width: 85%;
+        padding: 2.5rem 2rem 2rem;
+    }
+    
+    .cosmic-image {
+        max-width: 250px;
+    }
+    
+    .cosmic-title {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cosmic-showcase-container {
+        padding: 2.5rem 1.5rem 1.5rem;
+        margin: 1.5rem auto;
+        max-width: 90%;
+    }
+    
+    .cosmic-image {
+        max-width: 220px;
+    }
+    
+    .cosmic-showcase-container:hover {
+        transform: translateY(-10px) rotateX(3deg);
+    }
+}
+
+@media (max-width: 576px) {
+    .cosmic-showcase-container {
+        padding: 2rem 1.5rem 1.5rem;
+        margin: 1rem auto;
+    }
+    
+    .cosmic-image {
+        max-width: 200px;
+    }
+    
+    .cosmic-title {
+        font-size: 0.7rem;
+        top: 0.75rem;
+        left: 1.25rem;
+    }
+    
+    .cosmic-badge {
+        width: 25px;
+        height: 25px;
+        top: 0.75rem;
+        right: 1.25rem;
+    }
+    
+    .cosmic-badge i {
+        font-size: 12px;
+    }
+    
+    .cosmic-corner {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+/* Mejoras de usabilidad y accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .cosmic-showcase-container,
+    .cosmic-showcase-container::before,
+    .cosmic-showcase-container::after,
+    .cosmic-showcase-container *,
+    .cosmic-showcase-container *::before,
+    .cosmic-showcase-container *::after {
+        animation: none !important;
+        transition-duration: 0.1s !important;
+    }
+}
+
+          <!-- ESTILOS ENHANCED DE LAS TARJETAS DE LÍDERES-->
+          /* ESTILOS MEJORADOS PARA TARJETAS DE LÍDERES */
+.leader-card {
+    background: rgba(20, 20, 60, 0.6);
+    backdrop-filter: blur(10px);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Efecto de partículas/brillos en el fondo */
+.leader-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent 70%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.8s ease;
+}
+
+/* Línea brillante superior */
+.leader-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0), 
+        rgba(255,255,255,0.8), 
+        rgba(255,255,255,0));
+    background-size: 300% 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Efecto de esquinas */
+.leader-card-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.3);
+    border-width: 0;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+}
+
+.leader-card-corner.top-left {
+    top: 10px;
+    left: 10px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+}
+
+.leader-card-corner.top-right {
+    top: 10px;
+    right: 10px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+}
+
+.leader-card-corner.bottom-left {
+    bottom: 10px;
+    left: 10px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
+
+.leader-card-corner.bottom-right {
+    bottom: 10px;
+    right: 10px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+}
+
+/* Mejoras para la imagen de avatar */
+.leader-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    filter: grayscale(20%);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d;
+    z-index: 2;
+}
+
+/* Efecto de brillo para la imagen */
+.leader-avatar-glow {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8), transparent 70%);
+    opacity: 0;
+    transition: all 0.8s ease;
+    z-index: 1;
+    filter: blur(15px);
+}
+
+/* Mejoras para el nombre del líder */
+.leader-name {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-top: 1.5rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    z-index: 2;
+}
+
+/* Mejoras para la cita del líder */
+.leader-quote {
+    font-size: 1rem;
+    font-style: italic;
+    opacity: 0.85;
+    margin-top: 1rem;
+    line-height: 1.6;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    z-index: 2;
+}
+
+/* Decoraciones adicionales */
+.leader-card-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.leader-card-dot {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    opacity: 0.2;
+    transition: all 0.8s ease;
+}
+
+.leader-card-dot:nth-child(1) { top: 15%; left: 10%; }
+.leader-card-dot:nth-child(2) { top: 25%; right: 15%; }
+.leader-card-dot:nth-child(3) { bottom: 20%; left: 20%; }
+.leader-card-dot:nth-child(4) { bottom: 30%; right: 25%; }
+.leader-card-dot:nth-child(5) { top: 40%; left: 50%; }
+.leader-card-dot:nth-child(6) { bottom: 15%; right: 10%; }
+
+/* Animaciones de hover */
+.leader-card:hover {
+    transform: translateY(-12px) scale(1.04) rotateX(3deg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.leader-card:hover::before {
+    opacity: 0.8;
+    animation: pulse-glow 3s infinite ease-in-out;
+}
+
+.leader-card:hover::after {
+    opacity: 1;
+    animation: gradient-slide 4s infinite;
+}
+
+.leader-card:hover .leader-card-corner {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.leader-card:hover .leader-avatar {
+    transform: translateY(-8px) scale(1.1) translateZ(30px);
+    filter: grayscale(0%);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.6);
+}
+
+.leader-card:hover .leader-avatar-glow {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(1.2);
+    animation: avatar-glow 4s infinite alternate;
+}
+
+.leader-card:hover .leader-name {
+    transform: translateY(-5px) translateZ(20px);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.leader-card:hover .leader-quote {
+    transform: translateZ(15px);
+    opacity: 1;
+}
+
+.leader-card:hover .leader-card-dots {
+    opacity: 1;
+}
+
+.leader-card:hover .leader-card-dot {
+    animation: twinkle 3s infinite ease-in-out alternate;
+}
+
+.leader-card:hover .leader-card-dot:nth-child(1) { animation-delay: 0s; }
+.leader-card:hover .leader-card-dot:nth-child(2) { animation-delay: 0.5s; }
+.leader-card:hover .leader-card-dot:nth-child(3) { animation-delay: 1s; }
+.leader-card:hover .leader-card-dot:nth-child(4) { animation-delay: 1.5s; }
+.leader-card:hover .leader-card-dot:nth-child(5) { animation-delay: 2s; }
+.leader-card:hover .leader-card-dot:nth-child(6) { animation-delay: 2.5s; }
+
+/* Efectos específicos para cada clan */
+.leader-card.bg-clan-vega {
+    background: linear-gradient(135deg, rgba(20, 20, 60, 0.6), rgba(59, 130, 246, 0.2));
+}
+.leader-card.bg-clan-arturo {
+    background: linear-gradient(135deg, rgba(20, 20, 60, 0.6), rgba(245, 158, 11, 0.2));
+}
+.leader-card.bg-clan-sirius {
+    background: linear-gradient(135deg, rgba(20, 20, 60, 0.6), rgba(16, 185, 129, 0.2));
+}
+.leader-card.bg-clan-antares {
+    background: linear-gradient(135deg, rgba(20, 20, 60, 0.6), rgba(239, 68, 68, 0.2));
+}
+
+/* Animaciones adicionales */
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+@keyframes gradient-slide {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(2); filter: blur(1px); }
+}
+
+@keyframes avatar-glow {
+    0% { opacity: 0.3; filter: blur(10px); }
+    100% { opacity: 0.6; filter: blur(15px); }
+}
+
+/* Mejoras responsivas */
+@media (max-width: 1024px) {
+    .leader-avatar {
+        width: 130px;
+        height: 130px;
+    }
+    .leader-avatar-glow {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 768px) {
+    .leader-card {
+        padding: 2rem 1.5rem;
+    }
+    .leader-avatar {
+        width: 120px;
+        height: 120px;
+    }
+    .leader-avatar-glow {
+        width: 130px;
+        height: 130px;
+    }
+    .leader-name {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .leader-card {
+        padding: 1.75rem 1.25rem;
+    }
+    .leader-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    .leader-avatar-glow {
+        width: 110px;
+        height: 110px;
+    }
+    .leader-name {
+        font-size: 1.3rem;
+    }
+}
+
+
+
+          
 </style>
 </head>
 
@@ -1310,38 +2340,42 @@ section {
     <div class="stars"></div>
 
     <!-- Navigation -->
-    <nav class="sticky-nav" id="sticky-nav">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center">
-                <a href="#" class="text-xl font-bold pixel-font text-glow nav-brand"><i class="fas fa-star-of-life mr-2 animate-pulse"></i>HEROES CLANS</a>
-                <div class="hidden md:flex space-x-6">
-                    <a href="#clasificatoria" class="nav-link"><i class="fas fa-trophy"></i> Clasificatoria</a>
-                    <a href="#lideres" class="nav-link"><i class="fas fa-crown"></i> Líderes</a>
-                    <a href="#clans-store" class="nav-link"><i class="fas fa-store"></i> Clans Store</a>
-                    <a href="#runas" class="nav-link"><i class="fas fa-gem"></i> Runas</a>
-                    <a href="#boosts" class="nav-link"><i class="fas fa-bolt"></i> Boosts</a>
-                    <a href="#challenges" class="nav-link"><i class="fas fa-flag-checkered"></i> Challenges</a>
-                </div>
-                <!-- Mobile menu button -->
-                <button class="md:hidden focus:outline-none mobile-menu-button" id="mobile-menu-button">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
+    
+    <!-- Reemplaza TODO tu código de navegación (incluyendo tanto el botón como el menú móvil) con esto -->
+<nav class="sticky-nav" id="sticky-nav">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center">
+            <a href="#" class="text-xl font-bold pixel-font text-glow nav-brand"><i class="fas fa-star-of-life mr-2 animate-pulse"></i>HEROES CLANS</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#clasificatoria" class="nav-link"><i class="fas fa-trophy"></i> Clasificatoria</a>
+                <a href="#lideres" class="nav-link"><i class="fas fa-crown"></i> Líderes</a>
+                <a href="#clans-store" class="nav-link"><i class="fas fa-store"></i> Clans Store</a>
+                <a href="#runas" class="nav-link"><i class="fas fa-gem"></i> Runas</a>
+                <a href="#boosts" class="nav-link"><i class="fas fa-bolt"></i> Boosts</a>
+                <a href="#challenges" class="nav-link"><i class="fas fa-flag-checkered"></i> Challenges</a>
             </div>
-            
-            
-            <!-- Mobile menu -->
-<div class="md:hidden mobile-menu" id="mobile-menu">
-    <div class="px-4 py-2">
-        <a href="#clasificatoria" class="block py-2 nav-link"><i class="fas fa-trophy mr-2"></i> Clasificatoria</a>
-        <a href="#lideres" class="block py-2 nav-link"><i class="fas fa-crown mr-2"></i> Líderes</a>
-        <a href="#clans-store" class="block py-2 nav-link"><i class="fas fa-store mr-2"></i> Clans Store</a>
-        <a href="#runas" class="block py-2 nav-link"><i class="fas fa-gem mr-2"></i> Runas</a>
-        <a href="#boosts" class="block py-2 nav-link"><i class="fas fa-bolt mr-2"></i> Boosts</a>
-        <a href="#challenges" class="block py-2 nav-link"><i class="fas fa-flag-checkered mr-2"></i> Challenges</a>
+            <!-- Mobile menu button -->
+            <button class="md:hidden focus:outline-none mobile-menu-button" id="mobile-menu-button">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden mobile-menu" id="mobile-menu">
+            <div class="px-4 py-2">
+                <a href="#clasificatoria" class="block py-2 nav-link"><i class="fas fa-trophy mr-2"></i> Clasificatoria</a>
+                <a href="#lideres" class="block py-2 nav-link"><i class="fas fa-crown mr-2"></i> Líderes</a>
+                <a href="#clans-store" class="block py-2 nav-link"><i class="fas fa-store mr-2"></i> Clans Store</a>
+                <a href="#runas" class="block py-2 nav-link"><i class="fas fa-gem mr-2"></i> Runas</a>
+                <a href="#boosts" class="block py-2 nav-link"><i class="fas fa-bolt mr-2"></i> Boosts</a>
+                <a href="#challenges" class="block py-2 nav-link"><i class="fas fa-flag-checkered mr-2"></i> Challenges</a>
+            </div>
+        </div>
     </div>
-</div>
+</nav>
+
 
 
       
@@ -1378,11 +2412,7 @@ section {
         </div>
     </section>
 
-    <!-- Floating bubbles for background -->
-    <div class="bg-bubble bg-bubble-1"></div>
-    <div class="bg-bubble bg-bubble-2"></div>
-    <div class="bg-bubble bg-bubble-3"></div>
-    
+
         <!-- Clasificatoria Section -->
     <section id="clasificatoria" class="py-24 relative fade-in-section">
         <div class="container mx-auto px-4">
@@ -1390,119 +2420,166 @@ section {
                 <h2 class="title-section pixel-font text-center">CLASIFICATORIA</h2>
             </div>
 
-            <!-- Overview cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                <!-- Clan Vega -->
-                <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
-                    <div class="leaderboard-card bg-clan-vega border-clan-vega shadow-vega">
-                        <div class="flex items-center space-x-5 mb-6">
-                            <img src="https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png" alt="Vega" class="w-16 h-16 animate-float">
-                            <h3 class="card-title clan-vega">VEGA</h3>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4">
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Victorias</p>
-                                <p class="stat-value clan-vega">5</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Puntos</p>
-                                <p class="stat-value clan-vega">55</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Posición</p>
-                                <p class="stat-value clan-vega">1°</p>
-                            </div>
-                        </div>
+         <!-- Overview cards -->
+         
+         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+    <!-- Clan Antares (First Place) -->
+    <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+        <div class="leaderboard-card bg-clan-antares border-clan-antares shadow-antares hover:shadow-lg hover:shadow-red-500/30 transition-all duration-500 p-4 h-full">
+            <!-- Clan header -->
+            <div class="flex items-start justify-between mb-6">
+                <div class="flex flex-col">
+                    <p class="pixel-font text-pink-200 text-sm mb-1 whitespace-nowrap">CLAN <br> ESTELAR</p>
+                    <div class="flex items-center mt-1">
+                        <i class="fas fa-trophy text-red-400 text-xl mr-1.5"></i>
+                        <span class="text-2xl font-bold text-red-400">1</span>
                     </div>
                 </div>
-
-                <!-- Clan Arturo -->
-                <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
-                    <div class="leaderboard-card bg-clan-arturo border-clan-arturo shadow-arturo">
-                        <div class="flex items-center space-x-5 mb-6">
-                            <img src="https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png" alt="Arturo" class="w-16 h-16 animate-float">
-                            <h3 class="card-title clan-arturo">ARTURO</h3>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4">
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Victorias</p>
-                                <p class="stat-value clan-arturo">3</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Puntos</p>
-                                <p class="stat-value clan-arturo">48</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Posición</p>
-                                <p class="stat-value clan-arturo">2°</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Clan Sirius -->
-                <div data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
-                    <div class="leaderboard-card bg-clan-sirius border-clan-sirius shadow-sirius">
-                        <div class="flex items-center space-x-5 mb-6">
-                            <img src="https://i.postimg.cc/3wBzqCNn/Photo-Room-20250209-163858.png" alt="Sirius" class="w-16 h-16 animate-float">
-                            <h3 class="card-title clan-sirius">SIRIUS</h3>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4">
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Victorias</p>
-                                <p class="stat-value clan-sirius">2</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Puntos</p>
-                                <p class="stat-value clan-sirius">37</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Posición</p>
-                                <p class="stat-value clan-sirius">3°</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Clan Antares -->
-                <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
-                    <div class="leaderboard-card bg-clan-antares border-clan-antares shadow-antares">
-                        <div class="flex items-center space-x-5 mb-6">
-                            <img src="https://i.postimg.cc/q7xdTHbc/Photo-Room-20250209-163507.png" alt="Antares" class="w-16 h-16 animate-float">
-                            <h3 class="card-title clan-antares">ANTARES</h3>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4">
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Victorias</p>
-                                <p class="stat-value clan-antares">1</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Puntos</p>
-                                <p class="stat-value clan-antares">22</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="stat-label opacity-80">Posición</p>
-                                <p class="stat-value clan-antares">4°</p>
-                            </div>
-                        </div>
+                <div class="flex items-center">
+                    <h3 class="text-2xl font-extrabold text-red-400 mr-2">ANTARES</h3>
+                    <div class="w-10 h-10 flex-shrink-0 overflow-hidden">
+                        <img src="https://i.postimg.cc/q7xdTHbc/Photo-Room-20250209-163507.png" alt="Antares" class="w-full h-full object-contain">
                     </div>
                 </div>
             </div>
+            
+            <!-- Score section -->
+            <div class="flex justify-between items-end mt-auto">
+                <div>
+                    <p class="text-lg font-bold text-cyan-200 whitespace-nowrap">PUNTOS</p>
+                    <p class="text-4xl font-bold text-cyan-300">60</p>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-crown text-yellow-400 text-lg absolute -top-5 right-1"></i>
+                    <p class="text-4xl font-extrabold text-white">1°</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clan Vega (Second Place) -->
+    <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+        <div class="leaderboard-card bg-clan-vega border-clan-vega shadow-vega hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-500 p-4 h-full">
+            <!-- Clan header -->
+            <div class="flex items-start justify-between mb-6">
+                <div class="flex flex-col">
+                    <p class="pixel-font text-pink-200 text-sm mb-1 whitespace-nowrap">CLAN <br> ESTELAR</p>
+                    <div class="flex items-center mt-1">
+                        <i class="fas fa-trophy text-blue-400 text-xl mr-1.5"></i>
+                        <span class="text-2xl font-bold text-blue-400">1</span>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <h3 class="text-2xl font-extrabold text-blue-400 mr-2">VEGA</h3>
+                    <div class="w-10 h-10 flex-shrink-0 overflow-hidden">
+                        <img src="https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png" alt="Vega" class="w-full h-full object-contain">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Score section -->
+            <div class="flex justify-between items-end mt-auto">
+                <div>
+                    <p class="text-lg font-bold text-cyan-200 whitespace-nowrap">PUNTOS</p>
+                    <p class="text-4xl font-bold text-cyan-300">60</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-extrabold text-white">2°</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clan Arturo (Third Place) -->
+    <div data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+        <div class="leaderboard-card bg-clan-arturo border-clan-arturo shadow-arturo hover:shadow-lg hover:shadow-yellow-500/30 transition-all duration-500 p-4 h-full">
+            <!-- Clan header -->
+            <div class="flex items-start justify-between mb-6">
+                <div class="flex flex-col">
+                    <p class="pixel-font text-pink-200 text-sm mb-1 whitespace-nowrap">CLAN <br> ESTELAR</p>
+                    <div class="flex items-center mt-1">
+                        <i class="fas fa-trophy text-yellow-500 text-xl mr-1.5"></i>
+                        <span class="text-2xl font-bold text-yellow-500">0</span>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <h3 class="text-2xl font-extrabold text-yellow-500 mr-2">ARTURO</h3>
+                    <div class="w-10 h-10 flex-shrink-0 overflow-hidden">
+                        <img src="https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png" alt="Arturo" class="w-full h-full object-contain">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Score section -->
+            <div class="flex justify-between items-end mt-auto">
+                <div>
+                    <p class="text-lg font-bold text-cyan-200 whitespace-nowrap">PUNTOS</p>
+                    <p class="text-4xl font-bold text-cyan-300">32</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-extrabold text-white">3°</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clan Sirius (Fourth Place) -->
+    <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+        <div class="leaderboard-card bg-clan-sirius border-clan-sirius shadow-sirius hover:shadow-lg hover:shadow-green-500/30 transition-all duration-500 p-4 h-full">
+            <!-- Clan header -->
+            <div class="flex items-start justify-between mb-6">
+                <div class="flex flex-col">
+                    <p class="pixel-font text-pink-200 text-sm mb-1 whitespace-nowrap">CLAN <br> ESTELAR</p>
+                    <div class="flex items-center mt-1">
+                        <i class="fas fa-trophy text-green-400 text-xl mr-1.5"></i>
+                        <span class="text-2xl font-bold text-green-400">0</span>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <h3 class="text-2xl font-extrabold text-green-400 mr-2">SIRIUS</h3>
+                    <div class="w-10 h-10 flex-shrink-0 overflow-hidden">
+                        <img src="https://i.postimg.cc/3wBzqCNn/Photo-Room-20250209-163858.png" alt="Sirius" class="w-full h-full object-contain">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Score section -->
+            <div class="flex justify-between items-end mt-auto">
+                <div>
+                    <p class="text-lg font-bold text-cyan-200 whitespace-nowrap">PUNTOS</p>
+                    <p class="text-4xl font-bold text-cyan-300">5</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-extrabold text-white">4°</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    
+
                        <!-- Battle history and counters -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                
+                
                 <!-- Battle history -->
                 <!-- Reemplaza la sección del historial de batallas con esto -->
+<!-- Battle history -->
 <div class="lg:col-span-2" data-aos="fade-right" data-aos-duration="1000">
     <div class="battles-container">
         <h3 class="text-2xl font-bold mb-6 pixel-font flex items-center">
             <i class="fas fa-history mr-3 text-blue-400"></i> Historial de Batallas
         </h3>
         
-        <!-- Battle card 1 -->
+        <!-- Battle card 2 -->
         <div class="battle-card" data-aos="fade-left" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
             <div class="battle-info">
-                <p class="battle-title">Batalla #12 - Meditación</p>
-                <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>15 Feb 2025</p>
+                <p class="battle-title">Batalla #2 - Meditación</p>
+                <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>Temporada V</p>
             </div>
             <div class="battle-result-container">
                 <div class="battle-winner">
@@ -1513,63 +2590,18 @@ section {
             </div>
         </div>
         
-        <!-- Battle card 2 -->
+        <!-- Battle card 1 -->
         <div class="battle-card" data-aos="fade-left" data-aos-delay="150" data-aos-anchor-placement="top-bottom">
             <div class="battle-info">
-                <p class="battle-title">Batalla #11 - Lecturas</p>
-                <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>8 Feb 2025</p>
+                <p class="battle-title">Batalla #1 - Deepwork</p>
+                <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>Temporada V</p>
             </div>
             <div class="battle-result-container">
                 <div class="battle-winner">
-                    <p class="font-bold clan-arturo text-lg">ARTURO</p>
+                    <p class="font-bold clan-antares text-lg">ANTARES</p>
                     <p class="battle-result battle-win">GANADOR</p>
                 </div>
-                <img src="https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png" alt="Arturo" class="clan-icon">
-            </div>
-        </div>
-        
-        <!-- Battle card 3 -->
-        <div class="battle-card" data-aos="fade-left" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
-            <div class="battle-info">
-                <p class="battle-title">Batalla #10 - Pasos</p>
-                <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>1 Feb 2025</p>
-            </div>
-            <div class="battle-result-container">
-                <div class="battle-winner">
-                    <p class="font-bold clan-vega text-lg">VEGA</p>
-                    <p class="battle-result battle-win">GANADOR</p>
-                </div>
-                <img src="https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png" alt="Vega" class="clan-icon">
-            </div>
-        </div>
-        
-        <!-- Battle card 4 -->
-        <div class="battle-card" data-aos="fade-left" data-aos-delay="250" data-aos-anchor-placement="top-bottom">
-            <div class="battle-info">
-                <p class="battle-title">Batalla #9 - Deepwork</p>
-                <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>25 Ene 2025</p>
-            </div>
-            <div class="battle-result-container">
-                <div class="battle-winner">
-                    <p class="font-bold clan-sirius text-lg">SIRIUS</p>
-                    <p class="battle-result battle-win">GANADOR</p>
-                </div>
-                <img src="https://i.postimg.cc/3wBzqCNn/Photo-Room-20250209-163858.png" alt="Sirius" class="clan-icon">
-            </div>
-        </div>
-        
-        <!-- Battle card 5 -->
-        <div class="battle-card" data-aos="fade-left" data-aos-delay="300" data-aos-anchor-placement="top-bottom">
-            <div class="battle-info">
-                <p class="battle-title">Batalla #8 - Meditación</p>
-                <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>18 Ene 2025</p>
-            </div>
-            <div class="battle-result-container">
-                <div class="battle-winner">
-                    <p class="font-bold clan-arturo text-lg">ARTURO</p>
-                    <p class="battle-result battle-win">GANADOR</p>
-                </div>
-                <img src="https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png" alt="Arturo" class="clan-icon">
+                <img src="https://i.postimg.cc/q7xdTHbc/Photo-Room-20250209-163507.png" alt="Antares" class="clan-icon">
             </div>
         </div>
     </div>
@@ -1592,21 +2624,26 @@ section {
                         <div class="counter-box animate-glow" data-aos="zoom-in" data-aos-delay="200">
                             <div class="text-center">
                                 <p class="counter-title"><i class="fas fa-chart-line mr-2"></i>Progreso Temporada</p>
-                                <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">40%</p>
+                                <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">50%</p>
                                 <div class="w-full bg-gray-800 rounded-full h-3 mt-4 overflow-hidden">
-                                    <div class="bg-blue-600 h-3 rounded-full animate__animated animate__slideInLeft" style="width: 40%"></div>
+                                    <div class="bg-blue-600 h-3 rounded-full animate__animated animate__slideInLeft" style="width: 50%"></div>
                                 </div>
-                                <p class="text-md text-gray-300 font-semibold mt-3">2 de 5 batallas</p>
+                                <p class="text-md text-gray-300 font-semibold mt-3">2 de 4 batallas</p>
                             </div>
                         </div>
-                        
-                        <!-- Next battle counter -->
-                        <div class="counter-box animate-glow" data-aos="zoom-in" data-aos-delay="300">
-                            <div class="text-center">
-                                <p class="counter-title"><i class="fas fa-stopwatch mr-2"></i>Próxima Batalla</p>
-                                <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">5d</p>
-                                <p class="text-md text-gray-300 font-semibold"><i class="far fa-calendar-alt mr-2"></i>30 Feb - Lectura</p>
-                            </div>
+                       
+                      <!-- Next battle counter -->
+<div class="counter-box animate-glow" data-aos="zoom-in" data-aos-delay="300">
+    <div class="text-center">
+        <p class="counter-title"><i class="fas fa-stopwatch mr-2"></i>Próxima Batalla</p>
+        <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">2d</p>
+        <p class="text-md text-gray-300 font-semibold"><i class="far fa-calendar-alt mr-2"></i>7 Feb - Lectura</p>
+    </div>
+</div>
+
+
+                       
+                       
                         </div>
                     </div>
                 </div>
@@ -1614,88 +2651,150 @@ section {
         </div>
     </section>
     
-        <!-- Líderes Section -->
-    <section id="lideres" class="py-24 relative fade-in-section">
-        <div class="container mx-auto px-4">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="title-section pixel-font text-center">LÍDERES DE CLANES</h2>
+       <!-- Líderes Section -->
+<section id="lideres" class="py-24 relative fade-in-section">
+    <div class="container mx-auto px-4">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="title-section pixel-font text-center">LÍDERES DE CLANES</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Líder Vega -->
+            <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                <div class="leader-card bg-clan-vega bg-opacity-20 border-clan-vega border">
+                    <div class="leader-card-corner top-left"></div>
+                    <div class="leader-card-corner top-right"></div>
+                    <div class="leader-card-corner bottom-left"></div>
+                    <div class="leader-card-corner bottom-right"></div>
+                    
+                    <div class="leader-card-dots">
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center">
+                        <div class="mb-4 relative">
+                            <div class="leader-avatar-glow"></div>
+                            <img 
+                                src="https://i.postimg.cc/C5L56Vnv/IMG-20250304-WA0000.jpg" 
+                                alt="Raúl - Líder Vega" 
+                                class="leader-avatar"
+                            >
+                        </div>
+                        <h3 class="leader-name clan-vega mb-2">RAÚL</h3>
+                        <p class="text-lg font-semibold mb-1">LÍDER DE VEGA</p>
+                        <p class="leader-quote text-gray-300">"Somos lo que hacemos."</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Líder Vega -->
-                <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
-                    <div class="leader-card bg-clan-vega bg-opacity-20 border-clan-vega border">
-                        <div class="flex flex-col items-center text-center">
-                            <div class="mb-4">
-                                <img 
-                                    src="https://i.imgur.com/placeholder.jpg" 
-                                    alt="Líder Vega" 
-                                    class="leader-avatar"
-                                    onerror="this.src='https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png'"
-                                >
-                            </div>
-                            <h3 class="leader-name clan-vega mb-2">LÍDER VEGA</h3>
-                            <p class="leader-quote text-gray-300">"La disciplina vence al talento natural cuando el talento natural no tiene disciplina."</p>
+            <!-- Líder Arturo -->
+            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                <div class="leader-card bg-clan-arturo bg-opacity-20 border-clan-arturo border">
+                    <div class="leader-card-corner top-left"></div>
+                    <div class="leader-card-corner top-right"></div>
+                    <div class="leader-card-corner bottom-left"></div>
+                    <div class="leader-card-corner bottom-right"></div>
+                    
+                    <div class="leader-card-dots">
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center">
+                        <div class="mb-4 relative">
+                            <div class="leader-avatar-glow"></div>
+                            <img 
+                                src="https://i.postimg.cc/tg3gqghS/102-sin-t-tulo-20250309142353.jpg" 
+                                alt="Félix - Líder Arturo" 
+                                class="leader-avatar"
+                            >
                         </div>
+                        <h3 class="leader-name clan-arturo mb-2">FÉLIX</h3>
+                        <p class="text-lg font-semibold mb-1">LÍDER DE ARTURO</p>
+                        <p class="leader-quote text-gray-300">"Ponte en una posición donde puedas ganar."</p>
                     </div>
                 </div>
-                
-                <!-- Líder Arturo -->
-                <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
-                    <div class="leader-card bg-clan-arturo bg-opacity-20 border-clan-arturo border">
-                        <div class="flex flex-col items-center text-center">
-                            <div class="mb-4">
-                                <img 
-                                    src="https://i.imgur.com/placeholder.jpg" 
-                                    alt="Líder Arturo" 
-                                    class="leader-avatar"
-                                    onerror="this.src='https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png'"
-                                >
-                            </div>
-                            <h3 class="leader-name clan-arturo mb-2">LÍDER ARTURO</h3>
-                            <p class="leader-quote text-gray-300">"No se trata de tener tiempo, se trata de hacer tiempo para lo que importa."</p>
+            </div>
+            
+            <!-- Líder Sirius -->
+            <div data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                <div class="leader-card bg-clan-sirius bg-opacity-20 border-clan-sirius border">
+                    <div class="leader-card-corner top-left"></div>
+                    <div class="leader-card-corner top-right"></div>
+                    <div class="leader-card-corner bottom-left"></div>
+                    <div class="leader-card-corner bottom-right"></div>
+                    
+                    <div class="leader-card-dots">
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center">
+                        <div class="mb-4 relative">
+                            <div class="leader-avatar-glow"></div>
+                            <img 
+                                src="https://i.postimg.cc/kgt4HsDd/IMG-20250305-WA0113.jpg" 
+                                alt="Chelo - Líder Sirius" 
+                                class="leader-avatar"
+                            >
                         </div>
+                        <h3 class="leader-name clan-sirius mb-2">CHELO</h3>
+                        <p class="text-lg font-semibold mb-1">LÍDER DE SIRIUS</p>
+                        <p class="leader-quote text-gray-300">"¡A DARLE DURO, HERMANO!"</p>
                     </div>
                 </div>
-                
-                <!-- Líder Sirius -->
-                <div data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
-                    <div class="leader-card bg-clan-sirius bg-opacity-20 border-clan-sirius border">
-                        <div class="flex flex-col items-center text-center">
-                            <div class="mb-4">
-                                <img 
-                                    src="https://i.imgur.com/placeholder.jpg" 
-                                    alt="Líder Sirius" 
-                                    class="leader-avatar"
-                                    onerror="this.src='https://i.postimg.cc/3wBzqCNn/Photo-Room-20250209-163858.png'"
-                                >
-                            </div>
-                            <h3 class="leader-name clan-sirius mb-2">LÍDER SIRIUS</h3>
-                            <p class="leader-quote text-gray-300">"El que persevera, alcanza; el que estudia, aprende; el que medita, evoluciona."</p>
-                        </div>
+            </div>
+            
+            <!-- Líder Antares -->
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+                <div class="leader-card bg-clan-antares bg-opacity-20 border-clan-antares border">
+                    <div class="leader-card-corner top-left"></div>
+                    <div class="leader-card-corner top-right"></div>
+                    <div class="leader-card-corner bottom-left"></div>
+                    <div class="leader-card-corner bottom-right"></div>
+                    
+                    <div class="leader-card-dots">
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
+                        <div class="leader-card-dot"></div>
                     </div>
-                </div>
-                
-                <!-- Líder Antares -->
-                <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
-                    <div class="leader-card bg-clan-antares bg-opacity-20 border-clan-antares border">
-                        <div class="flex flex-col items-center text-center">
-                            <div class="mb-4">
-                                <img 
-                                    src="https://i.imgur.com/placeholder.jpg" 
-                                    alt="Líder Antares" 
-                                    class="leader-avatar"
-                                    onerror="this.src='https://i.postimg.cc/q7xdTHbc/Photo-Room-20250209-163507.png'"
-                                >
-                            </div>
-                            <h3 class="leader-name clan-antares mb-2">LÍDER ANTARES</h3>
-                            <p class="leader-quote text-gray-300">"hola soy joc y me hago muchas pajas jajaj uuuuu."</p>
+                    
+                    <div class="flex flex-col items-center text-center">
+                        <div class="mb-4 relative">
+                            <div class="leader-avatar-glow"></div>
+                            <img 
+                                src="https://i.postimg.cc/8c0pKfS5/IMG-20250303-WA0067.jpg" 
+                                alt="Joc Bruzual - Líder Antares" 
+                                class="leader-avatar"
+                            >
                         </div>
+                        <h3 class="leader-name clan-antares mb-2">JOC BRUZUAL</h3>
+                        <p class="text-lg font-semibold mb-1">LÍDER DE ANTARES</p>
+                        <p class="leader-quote text-gray-300">"At the end everything will be fine."</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
     
         <!-- Clans Store Section -->
     <section id="clans-store" class="py-24 relative fade-in-section info-section">
@@ -1728,8 +2827,41 @@ section {
                 </div>
                 
                 <div class="clan-showcase" data-aos="fade-left" data-aos-duration="1000">
-                    <img src="https://i.postimg.cc/T1BdN05c/63-sin-t-tulo-20250212175847.png" alt="Clan Store Preview" class="clan-showcase-img w-full max-w-md mx-auto animate__animated animate__pulse animate__infinite animate__slow">
-                </div>
+    <div class="cosmic-showcase-container store">
+        <div class="cosmic-title">CLANS STORE</div>
+        <div class="cosmic-badge">
+            <i class="fas fa-store"></i>
+        </div>
+        <div class="cosmic-corners">
+            <div class="cosmic-corner top-left"></div>
+            <div class="cosmic-corner top-right"></div>
+            <div class="cosmic-corner bottom-left"></div>
+            <div class="cosmic-corner bottom-right"></div>
+        </div>
+        <div class="cosmic-grid"></div>
+        <div class="cosmic-dots">
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+        </div>
+        <div class="cosmic-lines">
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+        </div>
+        <div class="cosmic-image-wrapper">
+            <img src="https://i.postimg.cc/T1BdN05c/63-sin-t-tulo-20250212175847.png" alt="Clan Store Preview" class="cosmic-image">
+            <div class="cosmic-shine"></div>
+        </div>
+    </div>
+</div>
+
             </div>
         </div>
     </section>
@@ -1742,9 +2874,43 @@ section {
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
                 <div class="clan-showcase order-2 lg:order-1" data-aos="fade-right" data-aos-duration="1000">
-                    <img src="https://i.postimg.cc/QtrBGmSP/Photo-Room-20250210-075807.png" alt="Runa Preview" class="clan-showcase-img w-full max-w-md mx-auto float-element animate__animated animate__pulse animate__infinite animate__slow">
-                </div>
+    <div class="cosmic-showcase-container runas">
+        <div class="cosmic-title">RUNAS</div>
+        <div class="cosmic-badge">
+            <i class="fas fa-gem"></i>
+        </div>
+        <div class="cosmic-corners">
+            <div class="cosmic-corner top-left"></div>
+            <div class="cosmic-corner top-right"></div>
+            <div class="cosmic-corner bottom-left"></div>
+            <div class="cosmic-corner bottom-right"></div>
+        </div>
+        <div class="cosmic-grid"></div>
+        <div class="cosmic-dots">
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+        </div>
+        <div class="cosmic-lines">
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+        </div>
+        <div class="cosmic-image-wrapper">
+            <img src="https://i.postimg.cc/QtrBGmSP/Photo-Room-20250210-075807.png" alt="Runa Preview" class="cosmic-image">
+            <div class="cosmic-shine"></div>
+        </div>
+    </div>
+</div>
+
                 
                 <div class="order-1 lg:order-2" data-aos="fade-left" data-aos-duration="1000">
                     <div class="info-panel p-8">
@@ -1816,8 +2982,41 @@ section {
                 </div>
                 
                 <div class="clan-showcase" data-aos="fade-left" data-aos-duration="1000">
-                    <img src="https://i.postimg.cc/k538Bw8s/Photo-Room-20250212-205529.png" alt="Boost Preview" class="clan-showcase-img w-full max-w-md mx-auto float-element animate__animated animate__pulse animate__infinite animate__slow">
-                </div>
+    <div class="cosmic-showcase-container boosts">
+        <div class="cosmic-title">BOOSTS</div>
+        <div class="cosmic-badge">
+            <i class="fas fa-bolt"></i>
+        </div>
+        <div class="cosmic-corners">
+            <div class="cosmic-corner top-left"></div>
+            <div class="cosmic-corner top-right"></div>
+            <div class="cosmic-corner bottom-left"></div>
+            <div class="cosmic-corner bottom-right"></div>
+        </div>
+        <div class="cosmic-grid"></div>
+        <div class="cosmic-dots">
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+        </div>
+        <div class="cosmic-lines">
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+        </div>
+        <div class="cosmic-image-wrapper">
+            <img src="https://i.postimg.cc/k538Bw8s/Photo-Room-20250212-205529.png" alt="Boost Preview" class="cosmic-image">
+            <div class="cosmic-shine"></div>
+        </div>
+    </div>
+</div>
+
             </div>
         </div>
     </section>
@@ -1831,8 +3030,41 @@ section {
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="clan-showcase order-2 lg:order-1" data-aos="fade-right" data-aos-duration="1000">
-                    <img src="https://i.postimg.cc/vZ8Kzt66/Photo-Room-20250211-172348.png" alt="Challenge Preview" class="clan-showcase-img w-full max-w-md mx-auto float-element animate__animated animate__pulse animate__infinite animate__slow">
-                </div>
+    <div class="cosmic-showcase-container challenges">
+        <div class="cosmic-title">CHALLENGES</div>
+        <div class="cosmic-badge">
+            <i class="fas fa-flag-checkered"></i>
+        </div>
+        <div class="cosmic-corners">
+            <div class="cosmic-corner top-left"></div>
+            <div class="cosmic-corner top-right"></div>
+            <div class="cosmic-corner bottom-left"></div>
+            <div class="cosmic-corner bottom-right"></div>
+        </div>
+        <div class="cosmic-grid"></div>
+        <div class="cosmic-dots">
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+            <div class="cosmic-dot"></div>
+        </div>
+        <div class="cosmic-lines">
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+            <div class="cosmic-line"></div>
+        </div>
+        <div class="cosmic-image-wrapper">
+            <img src="https://i.postimg.cc/vZ8Kzt66/Photo-Room-20250211-172348.png" alt="Challenge Preview" class="cosmic-image">
+            <div class="cosmic-shine"></div>
+        </div>
+    </div>
+</div>
+
                 
                 <div class="order-1 lg:order-2" data-aos="fade-left" data-aos-duration="1000">
                     <div class="info-panel p-8">
@@ -1859,184 +3091,346 @@ section {
         </div>
     </section>
     
-        <!-- Footer -->
-    <footer class="py-12 bg-opacity-50 bg-gray-900 border-t border-gray-800 border-opacity-50">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-8 md:mb-0">
-                    <h3 class="text-2xl font-bold pixel-font mb-3 text-center md:text-left">
-                        <i class="fas fa-star-of-life mr-2 animate-pulse"></i>HEROES CLANS
-                    </h3>
-                    <p class="text-md text-gray-300 font-semibold">Construyendo mejores hábitos juntos</p>
+       <!-- Footer with cosmic design -->
+<footer class="pt-16 pb-8 relative overflow-hidden">
+    <!-- Cosmic footer background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-indigo-900/20 to-gray-900/90 z-0"></div>
+    
+    <!-- Cosmic grid lines -->
+    <div class="absolute inset-0 z-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 30px 30px;"></div>
+    </div>
+    
+    <!-- Animated stars -->
+    <div class="absolute inset-0 z-0">
+        <div class="cosmic-dot" style="top: 15%; left: 10%;"></div>
+        <div class="cosmic-dot" style="top: 25%; right: 15%;"></div>
+        <div class="cosmic-dot" style="bottom: 20%; left: 20%;"></div>
+        <div class="cosmic-dot" style="bottom: 30%; right: 25%;"></div>
+        <div class="cosmic-dot" style="top: 40%; left: 50%;"></div>
+        <div class="cosmic-dot" style="bottom: 15%; right: 10%;"></div>
+    </div>
+    
+    <!-- Footer glow effect -->
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 mb-16">
+            <!-- Column 1: About -->
+            <div class="flex flex-col items-center sm:items-start">
+                <div class="mb-5">
+                    <img src="https://i.postimg.cc/vZ8Kzt66/Photo-Room-20250211-172348.png" alt="Heroes Clans Logo" class="w-20 h-20">
                 </div>
+                <h3 class="text-xl font-bold pixel-font mb-5 text-center sm:text-left">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">HEROES CLANS</span>
+                </h3>
+                <p class="text-gray-300 font-medium text-center sm:text-left mb-6">Podemos crecer todos juntos.</p>
                 
-                <div class="flex flex-wrap justify-center gap-6">
-                    <a href="#clasificatoria" class="nav-link interactive-element text-md"><i class="fas fa-trophy mr-1"></i> Clasificatoria</a>
-                    <a href="#lideres" class="nav-link interactive-element text-md"><i class="fas fa-crown mr-1"></i> Líderes</a>
-                    <a href="#clans-store" class="nav-link interactive-element text-md"><i class="fas fa-store mr-1"></i> Clans Store</a>
+                <!-- Social Media Icons -->
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.skool.com/heroesacademy/classroom/20458531" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-800 hover:bg-purple-600 transition-all duration-300 group">
+                        <i class="fas fa-school text-gray-400 group-hover:text-white"></i>
+                    </a>
+                    <a href="https://www.instagram.com/esunheroe?igsh=YmtzdmZqeDU2ZXJ4" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-800 hover:bg-pink-600 transition-all duration-300 group">
+                        <i class="fab fa-instagram text-gray-400 group-hover:text-white"></i>
+                    </a>
+                    <a href="https://youtube.com/@heroes.academy2?si=d0hzfGABtyz0ZBUd" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-800 hover:bg-red-600 transition-all duration-300 group">
+                        <i class="fab fa-youtube text-gray-400 group-hover:text-white"></i>
+                    </a>
+                    <a href="mailto:heroesclanson@gmail.com" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-800 hover:bg-blue-600 transition-all duration-300 group">
+                        <i class="fas fa-envelope text-gray-400 group-hover:text-white"></i>
+                    </a>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-10 pt-10 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-sm text-gray-400 mb-4 md:mb-0">© 2025 Heroes Clans. Todos los derechos reservados.</p>
-                <div>
-                    <p class="text-sm text-gray-400">Diseñado con <i class="fas fa-heart text-red-500 animate__animated animate__heartBeat animate__infinite"></i> para héroes reales</p>
+            <!-- Column 2: Navigation -->
+            <div class="flex flex-col items-center sm:items-start">
+                <h4 class="pixel-font text-lg mb-6 relative inline-block">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">NAVEGA</span>
+                    <span class="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-blue-400/40 to-transparent"></span>
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="#clasificatoria" class="flex items-center space-x-2 group">
+                            <i class="fas fa-trophy text-yellow-500 group-hover:animate-pulse"></i>
+                            <span class="text-gray-300 hover:text-white transition-colors duration-300">Clasificatoria</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#lideres" class="flex items-center space-x-2 group">
+                            <i class="fas fa-crown text-yellow-500 group-hover:animate-pulse"></i>
+                            <span class="text-gray-300 hover:text-white transition-colors duration-300">Líderes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#clans-store" class="flex items-center space-x-2 group">
+                            <i class="fas fa-store text-blue-400 group-hover:animate-pulse"></i>
+                            <span class="text-gray-300 hover:text-white transition-colors duration-300">Clans Store</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#runas" class="flex items-center space-x-2 group">
+                            <i class="fas fa-gem text-purple-400 group-hover:animate-pulse"></i>
+                            <span class="text-gray-300 hover:text-white transition-colors duration-300">Runas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#boosts" class="flex items-center space-x-2 group">
+                            <i class="fas fa-bolt text-yellow-400 group-hover:animate-pulse"></i>
+                            <span class="text-gray-300 hover:text-white transition-colors duration-300">Boosts</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Column 3: Clans -->
+            <div class="flex flex-col items-center sm:items-start">
+                <h4 class="pixel-font text-lg mb-6 relative inline-block">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">CLANES</span>
+                    <span class="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-blue-400/40 to-transparent"></span>
+                </h4>
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#clasificatoria" class="flex items-center space-x-3 group">
+                            <div class="w-8 h-8 flex-shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-110">
+                                <img src="https://i.postimg.cc/q7xdTHbc/Photo-Room-20250209-163507.png" alt="Antares" class="w-full h-full object-contain">
+                            </div>
+                            <span class="text-red-400 font-semibold group-hover:text-red-300 transition-colors duration-300">Clan Antares</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#clasificatoria" class="flex items-center space-x-3 group">
+                            <div class="w-8 h-8 flex-shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-110">
+                                <img src="https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png" alt="Vega" class="w-full h-full object-contain">
+                            </div>
+                            <span class="text-blue-400 font-semibold group-hover:text-blue-300 transition-colors duration-300">Clan Vega</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#clasificatoria" class="flex items-center space-x-3 group">
+                            <div class="w-8 h-8 flex-shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-110">
+                                <img src="https://i.postimg.cc/C5W28crL/Photo-Room-20250209-163949.png" alt="Arturo" class="w-full h-full object-contain">
+                            </div>
+                            <span class="text-yellow-500 font-semibold group-hover:text-yellow-400 transition-colors duration-300">Clan Arturo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#clasificatoria" class="flex items-center space-x-3 group">
+                            <div class="w-8 h-8 flex-shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-110">
+                                <img src="https://i.postimg.cc/3wBzqCNn/Photo-Room-20250209-163858.png" alt="Sirius" class="w-full h-full object-contain">
+                            </div>
+                            <span class="text-green-400 font-semibold group-hover:text-green-300 transition-colors duration-300">Clan Sirius</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Column 4: Sugerencias (formerly Newsletter) -->
+            <div class="flex flex-col items-center sm:items-start">
+                <h4 class="pixel-font text-lg mb-6 relative inline-block">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">SUGERENCIAS</span>
+                    <span class="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-blue-400/40 to-transparent"></span>
+                </h4>
+                <p class="text-gray-300 font-medium mb-5 text-center sm:text-left">¿Tienes ideas para mejorar Heroes Clans? Envíanos tus sugerencias a:</p>
+                
+                <div class="w-full max-w-sm">
+                    <div class="flex items-center space-x-3 mb-4 p-3 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700">
+                        <i class="fas fa-envelope-open-text text-purple-400 text-xl"></i>
+                        <a href="mailto:heroesclanson@gmail.com" class="text-purple-300 hover:text-purple-200 font-semibold transition-colors">
+                            heroesclanson@gmail.com
+                        </a>
+                    </div>
+                    
+                    <div class="p-4 bg-indigo-900 bg-opacity-30 rounded-lg border border-indigo-700 border-opacity-50">
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Tus comentarios nos ayudan a mejorar CONSTANTEMENTE, en serio... Si nos dejas una sugerencia, es una oportunidad para ti de mejorar aún más lo que ya está hecho. ¿Entiendes?... para hacer que Heroes Clans se sienta AÚN más ÉPICO para todoooos jaja. Tqm 🫶🏻.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+        
+        <!-- Footer Divider -->
+        <div class="relative py-1">
+            <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-800 opacity-50"></div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="px-4 py-1 bg-gray-900 bg-opacity-50 rounded-full border border-gray-800">
+                    <i class="fas fa-star-of-life text-purple-500 animate-pulse"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="flex flex-col md:flex-row justify-between items-center pt-8">
+            <div class="mb-4 md:mb-0 flex items-center">
+                <img src="https://i.postimg.cc/T1BdN05c/63-sin-t-tulo-20250212175847.png" alt="Heroes Clans Emblem" class="w-6 h-6 mr-2">
+                <p class="text-sm text-gray-400">© 2025 Heroes Clans. Todos los derechos reservados.</p>
+            </div>
+            <div class="flex items-center space-x-2">
+                <p class="text-sm text-gray-400">Diseñado con</p>
+                <i class="fas fa-heart text-red-500 animate__animated animate__heartBeat animate__infinite animate__slow"></i>
+                <p class="text-sm text-gray-400">para héroes reales</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
     
     <!-- AOS init script -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize AOS
-        AOS.init({
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 120,
-            duration: 800
-        });
-        
-   // Mobile menu toggle
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-
-if (mobileMenuButton && mobileMenu) {
-    mobileMenuButton.addEventListener('click', function() {
-        mobileMenu.classList.toggle('active');
-        console.log('Menu toggled:', mobileMenu.classList.contains('active'));
+    // Reemplaza COMPLETAMENTE el bloque de JavaScript que maneja el menú móvil
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar AOS
+    AOS.init({
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 120,
+        duration: 800
     });
     
-    // Close menu when clicking on links
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
-        });
-    });
+    // Mobile menu toggle - CÓDIGO MEJORADO
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
     
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (mobileMenu.classList.contains('active') && 
-            !mobileMenu.contains(e.target) && 
-            !mobileMenuButton.contains(e.target)) {
-            mobileMenu.classList.remove('active');
-        }
-    });
-}
-
-
-        // Progress bar with animation
-        const progressBar = document.querySelector('.progress-bar');
-        
-        window.addEventListener('scroll', () => {
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight - windowHeight;
-            const scrolled = window.scrollY;
-            const progress = (scrolled / documentHeight) * 100;
-            
-            progressBar.style.height = `${progress}%`;
-        });
-        
-        // Sticky navigation with better animation
-        const stickyNav = document.getElementById('sticky-nav');
-        let lastScrollTop = 0;
-        
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Show/hide sticky nav based on scroll direction and position
-            if (scrollTop > 200) {
-                if (scrollTop > lastScrollTop) {
-                    // Scrolling down
-                    stickyNav.classList.remove('visible');
-                } else {
-                    // Scrolling up
-                    stickyNav.classList.add('visible');
-                }
-            } else {
-                stickyNav.classList.remove('visible');
+    if (mobileMenuButton && mobileMenu) {
+        // Usamos delegación de eventos para el botón del menú
+        document.body.addEventListener('click', function(e) {
+            // Verificamos si el clic fue en el botón o dentro de él
+            if (mobileMenuButton.contains(e.target)) {
+                // Alternar el menú
+                mobileMenu.classList.toggle('active');
+                // Evitar propagación para que el evento de documento no cierre inmediatamente
+                e.stopPropagation();
+            } 
+            // Si el clic fue en un enlace dentro del menú móvil
+            else if (mobileMenu.contains(e.target) && e.target.tagName === 'A') {
+                // Cerrar el menú
+                mobileMenu.classList.remove('active');
+            } 
+            // Si el clic fue fuera del menú y el botón, y el menú está abierto
+            else if (!mobileMenu.contains(e.target) && mobileMenu.classList.contains('active')) {
+                // Cerrar el menú
+                mobileMenu.classList.remove('active');
             }
+        });
+    }
+    
+    // Progress bar con animación
+    const progressBar = document.querySelector('.progress-bar');
+    
+    window.addEventListener('scroll', () => {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight - windowHeight;
+        const scrolled = window.scrollY;
+        const progress = (scrolled / documentHeight) * 100;
+        
+        progressBar.style.height = `${progress}%`;
+    });
+    
+    // Navegación sticky con mejor animación
+    const stickyNav = document.getElementById('sticky-nav');
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Mostrar/ocultar nav sticky basado en dirección y posición del scroll
+        if (scrollTop > 200) {
+            if (scrollTop > lastScrollTop) {
+                // Scrolling down
+                stickyNav.classList.remove('visible');
+            } else {
+                // Scrolling up
+                stickyNav.classList.add('visible');
+            }
+        } else {
+            stickyNav.classList.remove('visible');
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+    
+    // Intersection Observer para animaciones fade
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+    
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    };
+    
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Seleccionar todos los elementos con clases fade-in
+    const fadeElements = document.querySelectorAll(
+        '.fade-in-section, .fade-in-left, .fade-in-right'
+    );
+    
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Smooth scroll para enlaces de anclaje con animación mejorada
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            lastScrollTop = scrollTop;
-        });
-        
-        // Enhanced Intersection Observer for fade animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-        
-        const observerCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        };
-        
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-        
-        // Select all elements with fade-in classes
-        const fadeElements = document.querySelectorAll(
-            '.fade-in-section, .fade-in-left, .fade-in-right'
-        );
-        
-        fadeElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        // Smooth scroll for anchor links with improved animation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    // Close mobile menu if open
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                    
-                    // Scroll to target with smooth animation
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80, // Offset for sticky header
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Parallax effect for hero section with enhanced movement
-        const videoBg = document.querySelector('.video-bg');
-        
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            if (videoBg) {
-                requestAnimationFrame(function() {
-                    videoBg.style.transform = 'translateY(' + (scrolled * 0.4) + 'px) scale(' + (1 + scrolled * 0.0005) + ')';
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Scroll to target con animación suave
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Offset para header sticky
+                    behavior: 'smooth'
                 });
             }
         });
-        
-        // Advanced hover effects for buttons
-        const epicButtons = document.querySelectorAll('.epic-button');
-        epicButtons.forEach(button => {
-            button.addEventListener('mouseenter', () => {
-                button.style.setProperty('--glow-strength', '1.5');
+    });
+    
+    // Efecto parallax para sección hero con movimiento mejorado
+    const videoBg = document.querySelector('.video-bg');
+    
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        if (videoBg) {
+            requestAnimationFrame(function() {
+                videoBg.style.transform = 'translateY(' + (scrolled * 0.4) + 'px) scale(' + (1 + scrolled * 0.0005) + ')';
             });
-            
-            button.addEventListener('mouseleave', () => {
-                button.style.setProperty('--glow-strength', '1.2');
-            });
+        }
+    });
+    
+    // Efectos hover avanzados para botones
+    const epicButtons = document.querySelectorAll('.epic-button');
+    epicButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.setProperty('--glow-strength', '1.5');
         });
         
-        // Initialize with a scroll event to set initial states
-        window.dispatchEvent(new Event('scroll'));
+        button.addEventListener('mouseleave', () => {
+            button.style.setProperty('--glow-strength', '1.2');
+        });
     });
+    
+    // Inicializar con un evento scroll para establecer estados iniciales
+    window.dispatchEvent(new Event('scroll'));
+});
+
+        
+     
+    
 </script>
 
 </body>
