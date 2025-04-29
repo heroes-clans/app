@@ -2961,6 +2961,136 @@ section {
     
 }
 
+/* Contenedor principal que tiene historial + estadísticas */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* En pantallas más grandes, pasamos a layout horizontal */
+@media (min-width: 992px) {
+  .dashboard-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .batalla-historial {
+    flex: 1;
+    max-width: 650px;
+  }
+  
+  .temporada-stats {
+    flex: 1;
+    max-width: 400px;
+    position: sticky;
+    top: 100px; /* Ajusta según la altura de tu nav */
+  }
+}
+
+/* Asegurarnos que las tarjetas de estadísticas no se desborden */
+.stat-card {
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background-color: rgba(13, 16, 38, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Mobile menu animations */
+/* Reemplaza todo el CSS del menú móvil con este código */
+.mobile-menu-button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: rgba(93, 92, 222, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-button:hover {
+    background: rgba(93, 92, 222, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(93, 92, 222, 0.3);
+}
+
+.mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(10, 10, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 0 0 16px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.mobile-menu.active {
+    max-height: 300px;
+    opacity: 1;
+    visibility: visible;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.mobile-menu .nav-link {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-menu.active .nav-link {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobile-menu.active .nav-link:nth-child(1) { transition-delay: 0.05s; }
+.mobile-menu.active .nav-link:nth-child(2) { transition-delay: 0.1s; }
+.mobile-menu.active .nav-link:nth-child(3) { transition-delay: 0.15s; }
+.mobile-menu.active .nav-link:nth-child(4) { transition-delay: 0.2s; }
+.mobile-menu.active .nav-link:nth-child(5) { transition-delay: 0.25s; }
+.mobile-menu.active .nav-link:nth-child(6) { transition-delay: 0.3s; }
+
+/* Corregir la navegación sticky */
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100vw;
+    z-index: 100;
+    padding: 1rem 0;
+    background: rgba(10, 10, 42, 0.8);
+    backdrop-filter: blur(10px);
+    transform: translateY(-100%);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
 </style>
 </head>
 
@@ -2974,26 +3104,22 @@ section {
     <!-- Background stars -->
     <div class="stars"></div>
 
-    <!-- Navigation -->
-    
-    <!-- Reemplaza TODO tu código de navegación (incluyendo tanto el botón como el menú móvil) con esto -->
+   <!-- Navigation -->
+<!-- Reemplaza TODO tu código de navegación (incluyendo tanto el botón como el menú móvil) con esto -->
 <nav class="sticky-nav" id="sticky-nav">
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center">
             <a href="#" class="text-xl font-bold pixel-font text-glow nav-brand"><i class="fas fa-star-of-life mr-2 animate-pulse"></i>HEROES CLANS</a>
-            <div class="hidden md:flex space-x-6">
+            <div class="hidden">
                 <a href="#clasificatoria" class="nav-link"><i class="fas fa-trophy"></i> Clasificatoria</a>
                 <a href="#lideres" class="nav-link"><i class="fas fa-crown"></i> Líderes</a>
                 <a href="#clans-store" class="nav-link"><i class="fas fa-store"></i> Clans Store</a>
                 <a href="#runas" class="nav-link"><i class="fas fa-gem"></i> Runas</a>
                 <a href="#boosts" class="nav-link"><i class="fas fa-bolt"></i> Boosts</a>
                 <a href="#challenges" class="nav-link"><i class="fas fa-flag-checkered"></i> Challenges</a>
-                
-                
-                
             </div>
             <!-- Mobile menu button -->
-            <button class="md:hidden focus:outline-none mobile-menu-button" id="mobile-menu-button">
+            <button class="focus:outline-none mobile-menu-button" id="mobile-menu-button">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -3001,7 +3127,7 @@ section {
         </div>
         
         <!-- Mobile menu -->
-        <div class="md:hidden mobile-menu" id="mobile-menu">
+        <div class="mobile-menu" id="mobile-menu">
             <div class="px-4 py-2">
                 <a href="#clasificatoria" class="block py-2 nav-link"><i class="fas fa-trophy mr-2"></i> Clasificatoria</a>
                 <a href="#lideres" class="block py-2 nav-link"><i class="fas fa-crown mr-2"></i> Líderes</a>
@@ -3009,9 +3135,6 @@ section {
                 <a href="#runas" class="block py-2 nav-link"><i class="fas fa-gem mr-2"></i> Runas</a>
                 <a href="#boosts" class="block py-2 nav-link"><i class="fas fa-bolt mr-2"></i> Boosts</a>
                 <a href="#challenges" class="block py-2 nav-link"><i class="fas fa-flag-checkered mr-2"></i> Challenges</a>
-                
-                
-                
             </div>
         </div>
     </div>
@@ -3019,8 +3142,9 @@ section {
 
 
 
+
       
-    </nav>
+    
     
         <!-- Hero Section -->
     <section class="hero flex items-center justify-center text-center relative">
@@ -3201,94 +3325,92 @@ section {
             
     
 
-                       <!-- Battle history and counters -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
-                
-                
-                <!-- Battle history -->
-                <!-- Reemplaza la sección del historial de batallas con esto -->
-<!-- Battle history -->
-<div class="lg:col-span-2" data-aos="fade-right" data-aos-duration="1000">
-    
-    <div class="battles-container">
-    <h3 class="text-2xl font-bold mb-6 pixel-font flex items-center">
-        <i class="fas fa-history mr-3 text-blue-400"></i> Historial de Batallas
-    </h3>
-    
-    <!-- Battle card 3: Próxima batalla -->
-    <div class="battle-card" data-aos="fade-left" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
-        <div class="battle-info">
-            <p class="battle-title">Batalla #3 - En preparación</p>
-            <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>Temporada VI • Próximamente</p>
-        </div>
-        <div class="battle-result-container">
-            <div class="px-3 py-2 bg-gray-700 text-white rounded-lg flex items-center opacity-75">
-                <i class="fas fa-hourglass-half mr-2"></i>
-                <span>Próximamente</span>
+                     <!-- Battle history and counters -->
+<div class="dashboard-container">
+    <!-- Battle history -->
+    <div class="batalla-historial">
+        <div class="battles-container">
+            <h3 class="text-2xl font-bold mb-6 pixel-font flex items-center">
+                <i class="fas fa-history mr-3 text-blue-400"></i> Historial de Batallas
+            </h3>
+            
+            <!-- Battle card 3: Próxima batalla -->
+            <div class="battle-card" data-aos="fade-left" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
+                <div class="battle-info">
+                    <p class="battle-title">Batalla #3 - En preparación</p>
+                    <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>Temporada VI • Próximamente</p>
+                </div>
+                <div class="battle-result-container">
+                    <div class="px-3 py-2 bg-gray-700 text-white rounded-lg flex items-center opacity-75">
+                        <i class="fas fa-hourglass-half mr-2"></i>
+                        <span>Próximamente</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Battle card 2: Finalizada -->
+            <div class="battle-card" data-aos="fade-left" data-aos-delay="150" data-aos-anchor-placement="top-bottom">
+                <div class="battle-info">
+                    <p class="battle-title">Batalla #2 - Finalizada</p>
+                    <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>Temporada VI • 24-27 Abril</p>
+                </div>
+                <div class="battle-result-container">
+                    <div class="battle-winner">
+                        <p class="font-bold clan-vega text-lg">VEGA</p>
+                        <p class="battle-result battle-win">GANADOR</p>
+                    </div>
+                    <img src="https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png" alt="Vega" class="clan-icon">
+                </div>
+            </div>
+            
+            <!-- Battle card 1 -->
+            <div class="battle-card" data-aos="fade-left" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
+                <div class="battle-info">
+                    <p class="battle-title">Batalla #1 - Apuntes de los Cursos</p>
+                    <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>Temporada VI</p>
+                </div>
+                <div class="battle-result-container">
+                    <div class="battle-winner">
+                        <p class="font-bold clan-antares text-lg">ANTARES</p>
+                        <p class="battle-result battle-win">GANADOR</p>
+                    </div>
+                    <img src="https://i.postimg.cc/q7xdTHbc/Photo-Room-20250209-163507.png" alt="Antares" class="clan-icon">
+                </div>
             </div>
         </div>
     </div>
     
-    <!-- Battle card 2: Finalizada -->
-    <div class="battle-card" data-aos="fade-left" data-aos-delay="150" data-aos-anchor-placement="top-bottom">
-        <div class="battle-info">
-            <p class="battle-title">Batalla #2 - Finalizada</p>
-            <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>Temporada VI • 24-27 Abril</p>
-        </div>
-        <div class="battle-result-container">
-            <div class="battle-winner">
-                <p class="font-bold clan-vega text-lg">VEGA</p>
-                <p class="battle-result battle-win">GANADOR</p>
+    <!-- Temporada stats -->
+    <div class="temporada-stats">
+        <!-- Total battles counter -->
+        <div class="counter-box animate-glow stat-card" data-aos="zoom-in" data-aos-delay="100">
+            <div class="text-center">
+                <p class="counter-title"><i class="fas fa-sword fa-battle-axe mr-2"></i>Batallas Totales</p>
+                <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">2</p>
+                <p class="text-md text-gray-300 font-semibold">Temporada VI</p>
             </div>
-            <img src="https://i.postimg.cc/sDGd2hHg/Photo-Room-20250209-163733.png" alt="Vega" class="clan-icon">
         </div>
-    </div>
-    
-    <!-- Battle card 1 -->
-    <div class="battle-card" data-aos="fade-left" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
-        <div class="battle-info">
-            <p class="battle-title">Batalla #1 - Apuntes de los Cursos</p>
-            <p class="battle-date"><i class="far fa-calendar-alt mr-2"></i>Temporada VI</p>
-        </div>
-        <div class="battle-result-container">
-            <div class="battle-winner">
-                <p class="font-bold clan-antares text-lg">ANTARES</p>
-                <p class="battle-result battle-win">GANADOR</p>
+
+        <!-- Season progress counter -->                      
+        <div class="counter-box animate-glow stat-card" data-aos="zoom-in" data-aos-delay="200">
+            <div class="text-center">
+                <p class="counter-title"><i class="fas fa-chart-line mr-2"></i>Progreso Temporada</p>
+                <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">50%</p>
+                <div class="w-full bg-gray-800 rounded-full h-3 mt-4 overflow-hidden">
+                    <div class="bg-blue-600 h-3 rounded-full animate__animated animate__slideInLeft" style="width: 50%"></div>
+                </div>
+                <p class="text-md text-gray-300 font-semibold mt-3">2 de 4 batallas</p>
             </div>
-            <img src="https://i.postimg.cc/q7xdTHbc/Photo-Room-20250209-163507.png" alt="Antares" class="clan-icon">
         </div>
-    </div>
-</div>
 
-
-                <!-- Total battles counter -->
-<div class="counter-box animate-glow" data-aos="zoom-in" data-aos-delay="100">
-    <div class="text-center">
-        <p class="counter-title"><i class="fas fa-sword fa-battle-axe mr-2"></i>Batallas Totales</p>
-        <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">2</p>
-        <p class="text-md text-gray-300 font-semibold">Temporada VI</p>
-    </div>
-</div>
-
-<!-- Season progress counter -->                      
-<div class="counter-box animate-glow" data-aos="zoom-in" data-aos-delay="200">
-    <div class="text-center">
-        <p class="counter-title"><i class="fas fa-chart-line mr-2"></i>Progreso Temporada</p>
-        <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">50%</p>
-        <div class="w-full bg-gray-800 rounded-full h-3 mt-4 overflow-hidden">
-            <div class="bg-blue-600 h-3 rounded-full animate__animated animate__slideInLeft" style="width: 50%"></div>
+        <!-- Next battle counter -->
+        <div class="counter-box animate-glow stat-card" data-aos="zoom-in" data-aos-delay="300">
+            <div class="text-center">
+                <p class="counter-title"><i class="fas fa-fire mr-2"></i>PRÓXIMA BATALLA</p>
+                <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">??</p>
+                <p class="text-md text-gray-300 font-semibold"><i class="far fa-calendar-alt mr-2"></i>Por anunciar</p>
+            </div>
         </div>
-        <p class="text-md text-gray-300 font-semibold mt-3">2 de 4 batallas</p>
-    </div>
-</div>
-
-<!-- Next battle counter -->
-<div class="counter-box animate-glow" data-aos="zoom-in" data-aos-delay="300">
-    <div class="text-center">
-        <p class="counter-title"><i class="fas fa-fire mr-2"></i>PRÓXIMA BATALLA</p>
-        <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">??</p>
-        <p class="text-md text-gray-300 font-semibold"><i class="far fa-calendar-alt mr-2"></i>Por anunciar</p>
     </div>
 </div>
 
@@ -3731,15 +3853,7 @@ section {
     </section>
     
    
-        </div>
-        <div class="record-modal-footer">
-            <div class="record-modal-badge">
-                <i class="fas fa-award"></i>
-                <span>Récord Certificado por Heroes Clans</span>
-            </div>
-        </div>
-    </div>
-</div>
+        
 
     
     
@@ -3928,7 +4042,7 @@ section {
         <div class="flex flex-col md:flex-row justify-between items-center pt-8">
             <div class="mb-4 md:mb-0 flex items-center">
                 <img src="https://i.postimg.cc/T1BdN05c/63-sin-t-tulo-20250212175847.png" alt="Heroes Clans Emblem" class="w-6 h-6 mr-2">
-                <p class="text-sm text-gray-400">© 2025 Heroes Clans. Todos los derechos reservados.</p>
+                <p class="text-sm text-gray-400">2025 Heroes Clans™</p>
             </div>
             <div class="flex items-center space-x-2">
                 <p class="text-sm text-gray-400">Diseñado con</p>
