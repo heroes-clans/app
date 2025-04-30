@@ -3091,7 +3091,215 @@ section {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
+
 </style>
+
+
+
+    
+    <!-- OUUUYEAAAA :D vamo' a darle stylesss -->
+    
+    <style>
+:root {
+    --primary-bg: #050518;  /* Fondo principal más oscuro */
+    --secondary-bg: #0a0a28; /* Fondo secundario más oscuro */
+    --text-color: #ffffff;
+    --accent-color: #5D5CDE;
+    --clan-vega: #3B82F6;  /* Azul */
+    --clan-arturo: #F59E0B; /* Amarillo */
+    --clan-sirius: #10B981; /* Verde */
+    --clan-antares: #EF4444; /* Rojo */
+    --glow-strength: 1.2;
+    
+    /* Variables para centrado consistente */
+    --container-max-width: 1400px;
+    --container-padding: 1rem; /* Padding consistente */
+}
+
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--primary-bg);
+        color: var(--text-color);
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Corrección para el centrado de contenedores */
+    .container {
+        width: 100%;
+        max-width: var(--container-max-width);
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: var(--container-padding);
+        padding-right: var(--container-padding);
+        box-sizing: border-box;
+        position: relative;
+    }
+
+   
+   
+
+    /* Resto de estilos originales */
+    .pixel-font {
+        font-family: 'Press Start 2P', cursive;
+    }
+
+    /* Fondos y estrelas */
+    .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background: 
+            radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+            radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+            radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+        background-size: 550px 550px, 350px 350px, 250px 250px;
+        animation: stars 120s linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes stars {
+        0% { background-position: 0 0, 0 0, 0 0; }
+        100% { background-position: 550px 550px, 350px 350px, 250px 250px; }
+    }
+
+    
+
+    /* Corrección para layout containers centrados */
+    
+
+    /* Fix para battle cards y containers */
+    .battles-container {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    /* Navegación sticky centrada */
+    .sticky-nav .container {
+        width: 100%;
+        max-width: var(--container-max-width);
+        margin: 0 auto;
+        padding-left: var(--container-padding);
+        padding-right: var(--container-padding);
+    }
+
+    /* Fix para la estructura de layout en mobile y desktop */
+    @media (min-width: 992px) {
+        .dashboard-container {
+            padding-left: var(--container-padding);
+            padding-right: var(--container-padding);
+        }
+    }
+
+    /* El resto de los estilos permanece igual que en el original */
+    
+    :root {
+    --primary-bg: #050518;  /* Fondo principal más oscuro */
+    --secondary-bg: #0a0a28; /* Fondo secundario más oscuro */
+    --text-color: #ffffff;
+    --accent-color: #5D5CDE;
+    --clan-vega: #3B82F6;  /* Azul */
+    --clan-arturo: #F59E0B; /* Amarillo */
+    --clan-sirius: #10B981; /* Verde */
+    --clan-antares: #EF4444; /* Rojo */
+    --glow-strength: 1.2;
+    
+    /* Variables para centrado consistente */
+    --container-max-width: 1400px;
+    --container-padding: 1rem; /* Padding consistente */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Corrección para el centrado de contenedores */
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Fix para battle cards y containers */
+.battles-container {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Navegación sticky centrada */
+.sticky-nav .container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+}
+
+/* Fix para la estructura de layout en mobile y desktop */
+@media (min-width: 992px) {
+    .dashboard-container {
+        padding-left: var(--container-padding);
+        padding-right: var(--container-padding);
+    }
+}
+
+/* Ajuste específico para los contenedores de estadísticas */
+@media (min-width: 992px) {
+  .temporada-stats {
+    flex: 1;
+    max-width: 450px !important; /* Aumentado de 400px */
+    width: 100%;
+  }
+  
+  .stat-card {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .counter-box {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Contenedor principal más equilibrado */
+@media (min-width: 992px) {
+  .dashboard-container {
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .batalla-historial {
+    flex: 1;
+    max-width: calc(var(--container-max-width) - 500px);
+  }
+}
+
+    </style>
+
 </head>
 
 <body>
