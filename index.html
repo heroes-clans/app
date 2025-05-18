@@ -3298,6 +3298,7 @@ body {
   }
 }
 
+
     </style>
 
 </head>
@@ -3394,11 +3395,18 @@ body {
             </div>
 
          <!-- Overview cards -->
-         
-         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-    <!-- Clan Vega (Ahora Primer Lugar) -->
+      <!-- Leaderboard cards (ACTUALIZADO con resultados finales) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+    <!-- Clan Vega (Campeón) -->
     <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
-        <div class="leaderboard-card bg-clan-vega border-clan-vega shadow-vega hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-500 p-4 h-full">
+        <div class="leaderboard-card bg-clan-vega border-clan-vega shadow-vega hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-500 p-4 h-full champion-card">
+            <!-- Crown decoration (automáticamente se muestra solo en esta tarjeta) -->
+            <div class="crown-container">
+                <div class="crown-base"></div>
+                <div class="crown-gem"></div>
+                <div class="crown-glow"></div>
+            </div>
+            
             <!-- Clan header -->
             <div class="flex items-start justify-between mb-6">
                 <div class="flex flex-col">
@@ -3420,17 +3428,19 @@ body {
             <div class="flex justify-between items-end mt-auto">
                 <div>
                     <p class="text-lg font-bold text-cyan-200 whitespace-nowrap">PUNTOS</p>
-                    <p class="text-4xl font-bold text-cyan-300">???</p>
+                    <p class="text-4xl font-bold text-cyan-300">129</p>
                 </div>
                 <div class="relative">
-                    <i class="fas fa-crown text-yellow-400 text-lg absolute -top-5 right-1"></i>
+                    <div class="champion-badge">
+                        <i class="fas fa-crown text-yellow-400"></i>
+                    </div>
                     <p class="text-4xl font-extrabold text-white">1°</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Clan Antares (Ahora Segundo Lugar) -->
+    <!-- Clan Antares (Segundo Lugar) -->
     <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
         <div class="leaderboard-card bg-clan-antares border-clan-antares shadow-antares hover:shadow-lg hover:shadow-red-500/30 transition-all duration-500 p-4 h-full">
             <!-- Clan header -->
@@ -3454,7 +3464,7 @@ body {
             <div class="flex justify-between items-end mt-auto">
                 <div>
                     <p class="text-lg font-bold text-cyan-200 whitespace-nowrap">PUNTOS</p>
-                    <p class="text-4xl font-bold text-cyan-300">???</p>
+                    <p class="text-4xl font-bold text-cyan-300">119</p>
                 </div>
                 <div>
                     <p class="text-4xl font-extrabold text-white">2°</p>
@@ -3487,7 +3497,7 @@ body {
             <div class="flex justify-between items-end mt-auto">
                 <div>
                     <p class="text-lg font-bold text-cyan-200 whitespace-nowrap">PUNTOS</p>
-                    <p class="text-4xl font-bold text-cyan-300">???</p>
+                    <p class="text-4xl font-bold text-cyan-300">47</p>
                 </div>
                 <div>
                     <p class="text-4xl font-extrabold text-white">3°</p>
@@ -3520,7 +3530,7 @@ body {
             <div class="flex justify-between items-end mt-auto">
                 <div>
                     <p class="text-lg font-bold text-cyan-200 whitespace-nowrap">PUNTOS</p>
-                    <p class="text-4xl font-bold text-cyan-300">???</p>
+                    <p class="text-4xl font-bold text-cyan-300">39</p>
                 </div>
                 <div>
                     <p class="text-4xl font-extrabold text-white">4°</p>
@@ -3530,7 +3540,7 @@ body {
     </div>
 </div>
 
-
+        
 
             
     
@@ -3623,22 +3633,24 @@ body {
     <div class="text-center">
         <p class="counter-title"><i class="fas fa-sword fa-battle-axe mr-2"></i>Batallas Totales</p>
         <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">4</p>
-        <p class="text-md text-gray-300 font-semibold">Temporada VI</p>
+        <p class="text-md text-gray-300 font-semibold">Temporada VI - COMPLETADA</p>
     </div>
 </div>
 
 
-     <!-- Season progress counter (ACTUALIZADO a temporada completa) -->                      
+
+     <!-- Season progress counter (ACTUALIZADO a temporada completa) -->
 <div class="counter-box animate-glow stat-card" data-aos="zoom-in" data-aos-delay="200">
     <div class="text-center">
-        <p class="counter-title"><i class="fas fa-chart-line mr-2"></i>Progreso Temporada</p>
-        <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">100%</p>
+        <p class="counter-title"><i class="fas fa-trophy mr-2"></i>Temporada VI</p>
+        <p class="counter-value animate__animated animate__pulse animate__infinite animate__slow">FINALIZADA</p>
         <div class="w-full bg-gray-800 rounded-full h-3 mt-4 overflow-hidden">
-            <div class="bg-blue-600 h-3 rounded-full animate__animated animate__slideInLeft" style="width: 100%"></div>
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 h-3 rounded-full animate__animated animate__slideInLeft" style="width: 100%"></div>
         </div>
-        <p class="text-md text-gray-300 font-semibold mt-3">4 de 4 batallas completadas</p>
+        <p class="text-md text-gray-300 font-semibold mt-3">¡VEGA es el clan estelar!</p>
     </div>
 </div>
+
 
 
 
