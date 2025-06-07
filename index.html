@@ -208,81 +208,286 @@
         border-radius: 3px;
     }
 
-    /* Botones */
-    .epic-button {
-        position: relative;
-        padding: 0.75rem 1.5rem;
-        background: rgba(93, 92, 222, 0.2);
-        color: white;
-        font-family: 'Press Start 2P', cursive;
-        font-size: 0.9rem;
-        letter-spacing: 1px;
-        border: 2px solid rgba(93, 92, 222, 0.4);
-        border-radius: 4px;
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        z-index: 1;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(5px);
-    }
 
-    .epic-button::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        background: linear-gradient(45deg, 
-            rgba(93, 92, 222, 0.8), 
-            rgba(120, 119, 255, 0.8), 
-            rgba(93, 92, 222, 0.8)
-        );
-        background-size: 400%;
-        z-index: -1;
-        filter: blur(8px);
-        animation: button-glow 10s linear infinite;
-        opacity: 0;
-        transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    }
 
-    @keyframes button-glow {
-        0% { background-position: 0 0; }
-        50% { background-position: 400% 0; }
-        100% { background-position: 0 0; }
-    }
+/* === ESTILOS APPLE OBSESIVOS para .epic-button (FONDOS Y SOMBRAS MEJORADOS) === */
+/* REEMPLAZA tus estilos existentes para .epic-button con ESTO. */
 
-    .epic-button:hover {
-        transform: translateY(-3px) scale(1.05);
-        background: rgba(93, 92, 222, 0.4);
-        border-color: rgba(93, 92, 222, 0.6);
-        box-shadow: 0 6px 25px rgba(93, 92, 222, 0.4);
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
-        letter-spacing: 1.5px;
-    }
-
-    .epic-button:hover::before {
-        opacity: 1;
-    }
-
-    .epic-button:active {
-        transform: translateY(-1px);
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .epic-button::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 0;
-        background: linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent);
-        transition: height 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        z-index: -1;
-    }
-
-    .epic-button:hover::after {
-        height: 50%;
-    }
+.epic-button {
+    position: relative;
+    padding: clamp(0.8rem, 1.2vw + 0.4rem, 1rem) clamp(1.5rem, 2.5vw + 0.7rem, 2rem);
     
+    /* Gradiente de fondo más pronunciado para un efecto "premium" más claro */
+    background: linear-gradient(170deg, 
+                    rgba(60, 60, 65, 0.9) 0%, /* Tono superior más claro y opaco */
+                    rgba(45, 45, 48, 0.93) 40%, /* Transición media más intensa */
+                    rgba(35, 35, 38, 0.95) 100%  /* Tono inferior más oscuro y opaco */
+                ),
+                rgba(40, 40, 43, 0.85); /* Base para backdrop-filter */
+    
+    font-family: 'Press Start 2P', cursive;
+    /* Los estilos de texto (font-size, letter-spacing, color) se mueven al span interno */
+    
+    border: 1px solid rgba(255, 255, 255, 0.18); /* Borde más visible para definición */
+    border-radius: 12px;
+    overflow: hidden; /* Mantenemos overflow: hidden para un renderizado limpio */
+    transition: all 0.35s cubic-bezier(0.28, 0.8, 0.4, 0.98); /* Transición ligeramente más lenta y elástica */
+    z-index: 1;
+    
+    /* Sombras más detalladas para profundidad y efecto premium */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45),  /* Sombra principal más grande y oscura */
+                0 3px 8px rgba(0, 0, 0, 0.35), /* Sombra secundaria para definir borde cercano */
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.15), /* Bisel superior más pronunciado */
+                inset 0 -1.5px 1px rgba(0, 0, 0, 0.15); /* Sutil bisel inferior más definido */
+
+    backdrop-filter: blur(25px); /* Blur un poco más intenso para el efecto "vidrio" */
+    -webkit-backdrop-filter: blur(25px);
+    text-shadow: none;
+    cursor: pointer;
+    outline: none;
+
+    display: inline-flex;
+    align-items: baseline; 
+    justify-content: center;
+    text-align: center;
+    color: #F5F5F7; /* Color de fallback para el texto */
+}
+
+/* Estilos para el ICONO dentro del botón */
+.epic-button i {
+    color: #E0E0E0; /* Color base del icono, un gris claro */
+    margin-right: clamp(9px, 1.1vw + 5px, 13px);
+    font-size: 0.95em;
+    transition: transform 0.35s cubic-bezier(0.28, 0.8, 0.4, 0.98), color 0.35s ease;
+    flex-shrink: 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* NUEVA CLASE para el texto animado del botón - ¡PERSONA 3 RELOAD TEXTURA! */
+.button-text-animated {
+    font-size: clamp(0.7rem, 0.8vw + 0.45rem, 0.85rem); 
+    letter-spacing: 1.5px;
+
+    /* Gradiente de texto MÁS SUAVE y 'líquido' al estilo Persona 3 */
+    background-image: linear-gradient(
+        90deg,
+        #B0B0B0, /* Gris suave */
+        #E8E8E8, /* Plata más clara */
+        #FFFFFF, /* Blanco puro */
+        #F8F8F8, /* Blanco muy suave */
+        #D8D8D8, /* Gris medio sutil */
+        #F0F0F0, /* Blanco apagado */
+        #FFFFFF, /* Blanco puro */
+        #E0E0E0, /* Plata */
+        #B0B0B0  /* Repite para ciclo */
+    );
+    background-size: 8000% auto; /* ¡MEGA GRANDE para que la repetición sea casi IMPOSIBLE de detectar! */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Fallback */
+    display: inline-block; 
+    white-space: nowrap; 
+}
+
+/* Pseudo-elementos para brillos y auras (ligeros ajustes) */
+.epic-button::before { /* Brillo superior dinámico */
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 10%;
+    right: 10%;
+    height: 2.5px; /* Ligeramente más grueso */
+    background: linear-gradient(to right, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.3) 50%, /* Un poco más brillante */
+        rgba(255,255,255,0) 100%
+    );
+    border-radius: 2.5px; /* Ajuste el radio */
+    opacity: 0.8;
+    transition: all 0.35s cubic-bezier(0.28, 0.8, 0.4, 0.98);
+    transform: scaleX(0.85); /* Inicia un poco más largo */
+    z-index: 2;
+}
+
+.epic-button::after { /* Aura sutil de fondo */
+    content: '';
+    position: absolute;
+    inset: -3px; /* Ligeramente más grande que el botón para un aura más suave */
+    border-radius: 15px; /* Más redondeado para la aureola */
+    background: radial-gradient(circle at 50% 70%, rgba(180, 180, 220, 0.15), transparent 60%); /* Un poco más de luz */
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 0;
+    transform: scale(0.9);
+}
+
+/* Estado Hover */
+.epic-button:hover {
+    border-color: rgba(255, 255, 255, 0.3); /* Borde más brillante en hover */
+    /* El fondo del botón se ilumina sutilmente desde el centro */
+    background: linear-gradient(170deg, 
+                    rgba(70, 70, 75, 0.92) 0%, /* Tono superior más claro */
+                    rgba(55, 55, 60, 0.95) 40%, 
+                    rgba(45, 45, 48, 0.98) 100% 
+                ),
+                radial-gradient(circle at 50% 150%, rgba(100,100,130,0.4), transparent 70%), /* Luz sutil desde abajo más intensa */
+                rgba(50, 50, 53, 0.9); /* Base más clara */
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55), /* Sombra más grande y oscura */
+                0 4px 10px rgba(0, 0, 0, 0.45), /* Sombra secundaria más nítida */
+                inset 0 2px 1.5px rgba(255, 255, 255, 0.2), /* Bisel superior más fuerte */
+                inset 0 -1.5px 1.5px rgba(0, 0, 0, 0.15); /* Bisel inferior */
+    transform: translateY(-4px) scale(1.04); /* Más elevación y crecimiento */
+}
+
+.epic-button:hover::before { /* Brillo superior se expande e intensifica */
+    opacity: 1;
+    transform: scaleX(1);
+    left: 0;
+    right: 0;
+    height: 3px; /* Más grueso en hover */
+    background: linear-gradient(to right, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.45) 50%, /* Mucho más brillante */
+        rgba(255,255,255,0) 100%
+    );
+}
+
+.epic-button:hover::after { /* Aura se hace visible y se expande */
+    opacity: 1;
+    transform: scale(1.08); /* Aura más grande y visible */
+}
+
+.epic-button:hover i {
+    transform: scale(1.18) rotate(-7deg); /* Icono más grande y con más rotación */
+    color: #FFFFFF; /* Icono blanco brillante */
+    text-shadow: 0 0 10px rgba(255,255,255,0.4), 0 0 5px rgba(0,0,0,0.3); /* Brillo más fuerte */
+}
+
+/* Estado Active (presionado) */
+.epic-button:active {
+    background: linear-gradient(170deg, 
+                    rgba(28, 28, 31, 0.9) 0%, 
+                    rgba(35, 35, 38, 0.95) 60%, 
+                    rgba(40, 40, 43, 0.9) 100% 
+                ),
+                rgba(35,35,38,0.9);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), /* Sombra reducida y más definida */
+                inset 0 1.5px 2.5px rgba(0, 0, 0, 0.3); /* Sombra interna de presión más notoria */
+    transform: translateY(0px) scale(0.96); /* Se hunde y encoge más */
+    transition-duration: 0.1s; /* Reacción muy rápida */
+    filter: brightness(0.9); /* Oscurecimiento general */
+}
+
+.epic-button:active i {
+    color: #A0A0A0; /* Icono más apagado, pero CLARAMENTE VISIBLE */
+    transform: scale(0.92); /* Icono también se encoge */
+    text-shadow: none;
+}
+
+.epic-button:active::before {
+    opacity: 0.3;
+    transform: scaleX(0.6);
+    height: 1px;
+}
+
+.epic-button:active::after {
+    opacity: 0.1;
+    transform: scale(0.9);
+}
+
+/* Estilo de Focus para Accesibilidad (Refinado) */
+.epic-button:focus-visible {
+    outline: 3px solid rgba(0, 122, 255, 0.9); /* Outline más grueso y opaco */
+    outline-offset: 5px; /* Más espacio */
+    box-shadow: 0 0 0 6px rgba(0, 100, 230, 0.3), /* Sombra/glow exterior en focus más amplia y definida */
+                /* Mantenemos las sombras base del estado normal para consistencia */
+                0 10px 25px rgba(0, 0, 0, 0.45),  
+                0 3px 8px rgba(0, 0, 0, 0.35), 
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.15), 
+                inset 0 -1.5px 1px rgba(0, 0, 0, 0.15);
+}
+
+/* Nuevas clases para palabras resaltadas en botones */
+.word-highlight {
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* Clase para la palabra "CLASIFICACIÓN" */
+.classification-highlight {
+  color: #1e40af; /* Azul profundo */
+  background-image: linear-gradient(
+    90deg,
+    #1e3a8a,
+    #3b82f6,
+    #93c5fd,
+    #3b82f6,
+    #1e3a8a
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientFlow 3s linear infinite;
+}
+
+/* Clase para la palabra "STORE" */
+.store-highlight {
+  color: #f59e0b; /* Amarillo */
+  background-image: linear-gradient(
+    90deg,
+    #92400e,
+    #f59e0b,
+    #fef3c7,
+    #f59e0b,
+    #92400e
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientFlow 3s linear infinite;
+}
+
+/* Animación del gradiente */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Clase para botones en estado active */
+.epic-button.clicked {
+  transform: translateY(0px) scale(0.96) !important;
+  transition-duration: 0.1s !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), inset 0 1.5px 2.5px rgba(0, 0, 0, 0.3) !important;
+  filter: brightness(0.9) !important;
+}
+
+.epic-button.clicked i {
+  color: #A0A0A0 !important;
+  transform: scale(0.92) !important;
+  text-shadow: none !important;
+}
+
+.epic-button.clicked::before {
+  opacity: 0.3 !important;
+  transform: scaleX(0.6) !important;
+  height: 1px !important;
+}
+
+.epic-button.clicked::after {
+  opacity: 0.1 !important;
+  transform: scale(0.9) !important;
+}
+
+
         /* Estilos de sección Clasificatoria */
     .leaderboard-card {
     display: flex;
@@ -3384,6 +3589,269 @@ body {
 }
 
 
+/* ===== BOTONES HERO PERSONALIZADOS ===== */
+
+/* Botón VER CLASIFICACIÓN - Azul Claro */
+.epic-button.hero-classification {
+    /* Gradiente de fondo azul claro más pronunciado */
+    background: linear-gradient(170deg, 
+                    rgba(70, 130, 180, 0.9) 0%, /* Steel Blue claro superior */
+                    rgba(65, 105, 225, 0.93) 40%, /* Royal Blue medio */
+                    rgba(30, 144, 255, 0.95) 100%  /* Dodger Blue inferior */
+                ),
+                rgba(100, 149, 237, 0.85); /* Cornflower Blue base */
+    
+    border: 1px solid rgba(135, 206, 250, 0.3); /* Light Sky Blue borde */
+    
+    /* Sombras azules más detalladas */
+    box-shadow: 0 10px 25px rgba(30, 144, 255, 0.3),  /* Sombra principal azul */
+                0 3px 8px rgba(65, 105, 225, 0.25), /* Sombra secundaria */
+                inset 0 1.5px 1px rgba(173, 216, 230, 0.2), /* Bisel superior azul claro */
+                inset 0 -1.5px 1px rgba(25, 25, 112, 0.15); /* Bisel inferior azul oscuro */
+}
+
+/* Pseudo-elemento brillo superior para botón azul */
+.epic-button.hero-classification::before {
+    background: linear-gradient(to right, 
+        rgba(173, 216, 230, 0) 0%, 
+        rgba(173, 216, 230, 0.4) 50%, /* Light Blue más brillante */
+        rgba(173, 216, 230, 0) 100%
+    );
+}
+
+/* Aura de fondo para botón azul */
+.epic-button.hero-classification::after {
+    background: radial-gradient(circle at 50% 70%, rgba(135, 206, 250, 0.2), transparent 60%);
+}
+
+/* Estados Hover para botón azul */
+.epic-button.hero-classification:hover {
+    border-color: rgba(173, 216, 230, 0.4); /* Light Blue más brillante en hover */
+    
+    background: linear-gradient(170deg, 
+                    rgba(100, 149, 237, 0.92) 0%, /* Cornflower Blue más claro */
+                    rgba(70, 130, 180, 0.95) 40%, 
+                    rgba(65, 105, 225, 0.98) 100% 
+                ),
+                radial-gradient(circle at 50% 150%, rgba(135, 206, 250, 0.4), transparent 70%), /* Luz azul desde abajo */
+                rgba(100, 149, 237, 0.9);
+
+    box-shadow: 0 15px 35px rgba(30, 144, 255, 0.4), /* Sombra azul más grande */
+                0 4px 10px rgba(65, 105, 225, 0.35), 
+                inset 0 2px 1.5px rgba(173, 216, 230, 0.25), 
+                inset 0 -1.5px 1.5px rgba(25, 25, 112, 0.15);
+}
+
+.epic-button.hero-classification:hover::before {
+    background: linear-gradient(to right, 
+        rgba(173, 216, 230, 0) 0%, 
+        rgba(173, 216, 230, 0.6) 50%, /* Brillo azul más intenso */
+        rgba(173, 216, 230, 0) 100%
+    );
+}
+
+.epic-button.hero-classification:hover::after {
+    background: radial-gradient(circle at 50% 70%, rgba(135, 206, 250, 0.3), transparent 60%);
+}
+
+/* Estado Active para botón azul */
+.epic-button.hero-classification:active {
+    background: linear-gradient(170deg, 
+                    rgba(25, 25, 112, 0.9) 0%, 
+                    rgba(30, 144, 255, 0.95) 60%, 
+                    rgba(65, 105, 225, 0.9) 100% 
+                ),
+                rgba(70, 130, 180, 0.9);
+    box-shadow: 0 3px 8px rgba(30, 144, 255, 0.4), 
+                inset 0 1.5px 2.5px rgba(25, 25, 112, 0.3);
+}
+
+/* Botón CLANS STORE - Amarillo Claro */
+.epic-button.hero-store {
+    /* Gradiente de fondo amarillo claro más pronunciado */
+    background: linear-gradient(170deg, 
+                    rgba(255, 215, 0, 0.9) 0%, /* Gold superior */
+                    rgba(255, 193, 7, 0.93) 40%, /* Amber medio */
+                    rgba(255, 165, 0, 0.95) 100%  /* Orange inferior */
+                ),
+                rgba(255, 206, 84, 0.85); /* Light Golden Rod base */
+    
+    border: 1px solid rgba(255, 223, 0, 0.3); /* Gold borde */
+    
+    /* Sombras amarillas más detalladas */
+    box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3),  /* Sombra principal amarilla */
+                0 3px 8px rgba(255, 215, 0, 0.25), /* Sombra secundaria */
+                inset 0 1.5px 1px rgba(255, 255, 224, 0.2), /* Bisel superior amarillo claro */
+                inset 0 -1.5px 1px rgba(184, 134, 11, 0.15); /* Bisel inferior amarillo oscuro */
+}
+
+/* Pseudo-elemento brillo superior para botón amarillo */
+.epic-button.hero-store::before {
+    background: linear-gradient(to right, 
+        rgba(255, 255, 224, 0) 0%, 
+        rgba(255, 255, 224, 0.4) 50%, /* Light Yellow más brillante */
+        rgba(255, 255, 224, 0) 100%
+    );
+}
+
+/* Aura de fondo para botón amarillo */
+.epic-button.hero-store::after {
+    background: radial-gradient(circle at 50% 70%, rgba(255, 223, 0, 0.2), transparent 60%);
+}
+
+/* Estados Hover para botón amarillo */
+.epic-button.hero-store:hover {
+    border-color: rgba(255, 255, 224, 0.4); /* Light Yellow más brillante en hover */
+    
+    background: linear-gradient(170deg, 
+                    rgba(255, 206, 84, 0.92) 0%, /* Light Golden Rod más claro */
+                    rgba(255, 215, 0, 0.95) 40%, 
+                    rgba(255, 193, 7, 0.98) 100% 
+                ),
+                radial-gradient(circle at 50% 150%, rgba(255, 223, 0, 0.4), transparent 70%), /* Luz amarilla desde abajo */
+                rgba(255, 206, 84, 0.9);
+
+    box-shadow: 0 15px 35px rgba(255, 193, 7, 0.4), /* Sombra amarilla más grande */
+                0 4px 10px rgba(255, 215, 0, 0.35), 
+                inset 0 2px 1.5px rgba(255, 255, 224, 0.25), 
+                inset 0 -1.5px 1.5px rgba(184, 134, 11, 0.15);
+}
+
+.epic-button.hero-store:hover::before {
+    background: linear-gradient(to right, 
+        rgba(255, 255, 224, 0) 0%, 
+        rgba(255, 255, 224, 0.6) 50%, /* Brillo amarillo más intenso */
+        rgba(255, 255, 224, 0) 100%
+    );
+}
+
+.epic-button.hero-store:hover::after {
+    background: radial-gradient(circle at 50% 70%, rgba(255, 223, 0, 0.3), transparent 60%);
+}
+
+/* Estado Active para botón amarillo */
+.epic-button.hero-store:active {
+    background: linear-gradient(170deg, 
+                    rgba(184, 134, 11, 0.9) 0%, 
+                    rgba(255, 193, 7, 0.95) 60%, 
+                    rgba(255, 215, 0, 0.9) 100% 
+                ),
+                rgba(255, 165, 0, 0.9);
+    box-shadow: 0 3px 8px rgba(255, 193, 7, 0.4), 
+                inset 0 1.5px 2.5px rgba(184, 134, 11, 0.3);
+}
+
+/* ===== AJUSTES DE ICONOS Y TEXTO PARA BOTONES HERO ===== */
+
+/* Iconos y texto para botón CLASIFICACIÓN (azul) */
+.epic-button.hero-classification i {
+    color: #F8F9FA; /* Blanco casi puro para máximo contraste */
+    text-shadow: 0 1px 3px rgba(25, 25, 112, 0.4); /* Sombra azul oscura */
+    transition: all 0.35s cubic-bezier(0.28, 0.8, 0.4, 0.98);
+}
+
+.epic-button.hero-classification .button-text-animated {
+    /* Gradiente de texto optimizado para fondo azul */
+    background-image: linear-gradient(
+        90deg,
+        #FFFFFF, /* Blanco puro */
+        #F8F9FA, /* Blanco casi puro */
+        #E9ECEF, /* Gris muy claro */
+        #FFFFFF, /* Blanco puro */
+        #F0F8FF, /* Alice Blue muy claro */
+        #FFFFFF, /* Blanco puro */
+        #F8F9FA, /* Blanco casi puro */
+        #E6F3FF, /* Azul muy muy claro */
+        #FFFFFF  /* Blanco puro para completar ciclo */
+    );
+    background-size: 8000% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: none; /* Removemos text-shadow para que el gradiente se vea limpio */
+}
+
+/* Estados hover para botón azul */
+.epic-button.hero-classification:hover i {
+    color: #FFFFFF; /* Blanco puro en hover */
+    transform: scale(1.18) rotate(-7deg);
+    text-shadow: 0 0 12px rgba(173, 216, 230, 0.6), 0 0 6px rgba(25, 25, 112, 0.4);
+}
+
+/* Estado active para botón azul */
+.epic-button.hero-classification:active i {
+    color: #E9ECEF; /* Gris muy claro cuando se presiona */
+    text-shadow: 0 1px 2px rgba(25, 25, 112, 0.6);
+}
+
+/* Iconos y texto para botón CLANS STORE (amarillo) */
+.epic-button.hero-store i {
+    color: #212529; /* Gris muy oscuro para contraste con amarillo */
+    text-shadow: 0 1px 3px rgba(255, 193, 7, 0.3); /* Sombra amarilla sutil */
+    transition: all 0.35s cubic-bezier(0.28, 0.8, 0.4, 0.98);
+}
+
+.epic-button.hero-store .button-text-animated {
+    /* Gradiente de texto optimizado para fondo amarillo */
+    background-image: linear-gradient(
+        90deg,
+        #212529, /* Gris muy oscuro */
+        #343A40, /* Gris oscuro */
+        #495057, /* Gris medio-oscuro */
+        #212529, /* Gris muy oscuro */
+        #2C3E50, /* Azul gris oscuro */
+        #212529, /* Gris muy oscuro */
+        #1A1A1A, /* Negro suave */
+        #343A40, /* Gris oscuro */
+        #212529  /* Gris muy oscuro para completar */
+    );
+    background-size: 8000% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: none;
+}
+
+/* Estados hover para botón amarillo */
+.epic-button.hero-store:hover i {
+    color: #000000; /* Negro puro en hover para máximo contraste */
+    transform: scale(1.18) rotate(-7deg);
+    text-shadow: 0 0 12px rgba(255, 223, 0, 0.5), 0 0 6px rgba(184, 134, 11, 0.4);
+}
+
+/* Estado active para botón amarillo */
+.epic-button.hero-store:active i {
+    color: #495057; /* Gris medio cuando se presiona */
+    text-shadow: 0 1px 2px rgba(184, 134, 11, 0.6);
+}
+
+/* Ajustes generales para mejor legibilidad en botones hero */
+.epic-button.hero-classification,
+.epic-button.hero-store {
+    /* Asegurar que el texto tenga el peso adecuado */
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+/* Mejores transiciones para el texto animado en ambos botones */
+.epic-button.hero-classification .button-text-animated,
+.epic-button.hero-store .button-text-animated {
+    transition: all 0.35s cubic-bezier(0.28, 0.8, 0.4, 0.98);
+    font-weight: 800; /* Texto más grueso para mejor legibilidad */
+}
+
+/* Focus states para accesibilidad */
+.epic-button.hero-classification:focus-visible {
+    outline: 3px solid rgba(173, 216, 230, 0.8);
+    outline-offset: 5px;
+}
+
+.epic-button.hero-store:focus-visible {
+    outline: 3px solid rgba(255, 193, 7, 0.8);
+    outline-offset: 5px;
+}
 
 
     </style>
@@ -3458,9 +3926,10 @@ body {
                     </p>
 
                     <div class="flex flex-wrap justify-center gap-4 mt-10 animate__animated animate__fadeInUp animate__delay-1s">
-                        <a href="#clasificatoria" class="epic-button"><i class="fas fa-trophy mr-2"></i> VER CLASIFICACIÓN</a>
-                        <a href="#clans-store" class="epic-button"><i class="fas fa-store mr-2"></i> CLANS STORE</a>
-                    </div>
+    <a href="#clasificatoria" class="epic-button hero-classification"><i class="fas fa-trophy mr-2"></i><span class="button-text-animated">VER CLASIFICACIÓN</span></a>
+    <a href="#clans-store" class="epic-button hero-store"><i class="fas fa-store mr-2"></i><span class="button-text-animated">CLANS STORE</span></a>
+</div>
+
                 </div>
             </div>
         </div>
@@ -4819,6 +5288,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(introText);
     }
 });
+
 
     
 </script>
